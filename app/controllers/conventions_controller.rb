@@ -1,0 +1,2 @@
+class ConventionsController < ApplicationController
+end
