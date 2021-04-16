@@ -3,7 +3,7 @@ class ConventionsController < ApplicationController
 		@conventions = Convention.where(status: 'active')
 	end
 	def show
-		@convention = Convention.find(params[:id])
+		@convention = Convention.friendly.find(params[:id])
 	end
 	
 end
