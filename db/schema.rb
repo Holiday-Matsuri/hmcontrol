@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_025253) do
+ActiveRecord::Schema.define(version: 2021_04_17_013530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 2021_04_16_025253) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_conventions_on_slug", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "event_name"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.text "internal_desc"
+    t.text "external_desc"
+    t.integer "status"
+    t.string "slug"
+    t.bigint "convention_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["convention_id"], name: "index_events_on_convention_id"
+    t.index ["slug"], name: "index_events_on_slug"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -54,4 +69,5 @@ ActiveRecord::Schema.define(version: 2021_04_16_025253) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "events", "conventions"
 end
