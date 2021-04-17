@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_172254) do
+ActiveRecord::Schema.define(version: 2021_04_17_233459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 2021_04_17_172254) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_conventions_on_slug", unique: true
+  end
+
+  create_table "event_applications", force: :cascade do |t|
+    t.string "event_name"
+    t.string "internal_desc"
+    t.string "external_desc"
+    t.string "host_stage_name"
+    t.string "age_rating"
+    t.boolean "agreed_to_terms"
+    t.string "first_choice"
+    t.string "second_choice"
+    t.string "third_choice"
+    t.string "event_length"
+    t.boolean "previous_convention"
+    t.integer "application_score"
+    t.integer "application_status"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_event_applications_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -71,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_172254) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "event_applications", "users"
   add_foreign_key "events", "conventions"
   add_foreign_key "events", "users"
 end
