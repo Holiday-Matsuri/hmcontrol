@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :application_reviews
   resources :event_applications
   devise_for :users
   resources :conventions, only: [:index, :show] do
