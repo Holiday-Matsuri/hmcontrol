@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :application_reviews
-  resources :event_applications
   devise_for :users
   resources :conventions, only: [:index, :show] do
     resources :events, except: [:destroy]
+    resources :event_applications
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
