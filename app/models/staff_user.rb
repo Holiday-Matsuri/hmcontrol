@@ -1,0 +1,3 @@
+class StaffUser < User
+  
+end
