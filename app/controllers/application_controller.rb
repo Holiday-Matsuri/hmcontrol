@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     authenticate_user!
-    unless current_user.type == "AdminUser" do
+    if current_user.type != "AdminUser"
       flash[:alert] = "You are not Authorized to View this Page."
       redirect_to :back
     end
