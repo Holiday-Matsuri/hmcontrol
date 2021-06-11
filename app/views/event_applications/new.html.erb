@@ -1,0 +1,124 @@
+<h1>Holiday Matsuri <%=@convention.year %> Panel Application</h1>
+<p>Information That Zac and Greg Need to Provide me!!!</p>
+<hr>
+<%= form_for @panel, url: convention_event_applications_path(@convention, @panel) do |f| %>
+  <div class="row">
+    <h2>General Information</h2>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.label :event_name, class: 'form-label' %>
+      <%= f.text_field :event_name, class: 'form-control' %>
+      <div id="nameHelp" class="form-text">Name of panel/event as you would like it to appear in Guide/Mobile App</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.label :host_stage_name, class: 'form-label' %>
+      <%= f.text_field :host_stage_name, class: 'form-control' %>
+      <div id="nameHelp" class="form-text">Stage Name of Host or Hosts</div>
+    </div>
+    <div class="col">
+      <%= f.label :event_length, class: 'form-label' %>
+      <%= f.select :event_length, options_for_select(['1 Hour', '1.5 Hours', '2 Hours'], 'Select a length'), class: 'form-select' %>
+
+      <%= f.label :age_rating, class: 'form-label' %>
+      <%= f.select :age_rating, options_for_select(['G Rated', '13+', '18+'], 'Select an Age Rating'), class: 'form-select' %>
+    </div>
+    <div class="col">
+      <%= f.label "Did you previously host a Panel at Holiday Matsuri 2019?", class: 'form-check-label' %>
+      <%= f.check_box :previous_convention, class: 'form-check-input' %>
+    </div>
+  </div>
+  <div class="row">
+    <h2>About the Panel</h2>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.label 'Internal Description', class: 'form-label' %>
+      <%= f.text_area :internal_desc, class: 'form-control' %>
+      <div id="internalHelp" class="form-text">Description of the panel/event to assist Convention Organizers understand what you would like to do.</div>
+    </div>
+    <div class="col">
+      <%= f.label 'External Description', class: 'form-label' %>
+      <%= f.text_area :external_desc, row: 10, class: 'form-control' %>
+      <div id="externalHelp" class="form-text">Description of the panel/event you would like listed in the Convention Guide and Mobile App</div>
+    </div>
+  </div>
+  <div class="row">
+    <h2>Time Choices</h2>
+    <p>Please select your first, second, and third choices for time slots at Holiday Matsuri</p>
+  </div>
+  <div class="row">
+    <h3>First Choice</h3>
+  </div>
+  <div class="row">
+    <% @timeslots.each do |k, v| %>
+      <div class="col">
+        <h4><%= k %></h4>
+        <% v.each do |t| %>
+        <div class="form-check <%= t[:className] %>">
+          <%= f.radio_button :first_choice, t[:time], class: "#{t[:className]} form-check-input" %>
+          <%= f.label :first_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+        </div>
+          
+        <% end %>
+      </div>
+      <% end %>
+  </div>
+  <div class="row">
+    <h3>Second Choice</h3>
+  </div>
+  <div class="row">
+    <% @timeslots.each do |k, v| %>
+      <div class="col">
+        <h4><%= k %></h4>
+        <% v.each do |t| %>
+        <div class="form-check <%= t[:className] %>">
+          <%= f.radio_button :second_choice, t[:time], class: "#{t[:className]} form-check-input" %>
+          <%= f.label :second_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+        </div>
+          
+        <% end %>
+      </div>
+      <% end %>
+  </div>
+  <div class="row">
+    <h3>Third Choice</h3>
+  </div>
+  <div class="row">
+    <% @timeslots.each do |k, v| %>
+      <div class="col">
+        <h4><%= k %></h4>
+        <% v.each do |t| %>
+        <div class="form-check <%= t[:className] %>">
+          <%= f.radio_button :third_choice, t[:time], class: "#{t[:className]} form-check-input" %>
+          <%= f.label :third_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+        </div>
+          
+        <% end %>
+      </div>
+      <% end %>
+  </div>
+  
+  
+  
+  <%= f.hidden_field(:convention_id, :value => @convention.id) %>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+
+  <%= f.submit %>
+  <%end%>
+
+  <script>
+    $("#event_application_age_rating").change(function(){
+      var age = $("#event_application_age_rating").val();
+      console.log(age)
+      if(age == "18+"){
+        $('.non-adult').addClass('d-none')
+      }else{
+        $('.non-adult').removeClass('d-none')
+      }
+    })
+  </script>

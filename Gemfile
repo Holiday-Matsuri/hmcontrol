@@ -56,3 +56,6 @@ gem 'devise'
 
 # Look and Feel
 gem 'friendly_id'
+
+# Authorization
+gem 'cancancan'

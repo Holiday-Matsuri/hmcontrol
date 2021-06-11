@@ -1,0 +1,16 @@
+<%= form_for @event, url: convention_events_path(params[:convention_id]) do |f| %>
+  <%= f.label :event_name %>
+  <%= f.text_field :event_name %>
+  <%= f.label :start_datetime %>
+  <%= f.datetime_field :start_datetime %>
+  <%= f.label :end_datetime %>
+  <%= f.datetime_field :end_datetime %>
+  <%= f.label :internal_desc %>
+  <%= f.text_area :internal_desc %>
+  <%= f.label :external_desc %>
+  <%= f.text_area :external_desc %>
+  <%= f.hidden_field(:convention_id, :value => @convention.id) %>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+
+  <%= f.submit %>
+  <%end%>

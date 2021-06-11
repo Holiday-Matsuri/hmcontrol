@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     end
   end
+
+  def set_active_convention!
+    @convention = Convention.active.first
+  end
+  
   
   
 end
