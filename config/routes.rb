@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :show]
     resources :event_applications
   end
-  resources :profiles, only: [:index, :update]
+  resources :profiles, path: 'profile', only: [:index, :update]
 end
