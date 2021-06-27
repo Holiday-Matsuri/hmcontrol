@@ -1,91 +1,39 @@
 class EventApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_convention
+
   def index
     @panels = EventApplication.where(user_id: current_user.id)
   end
   def new
     @panel = EventApplication.new
-    @timeslots = {
-      'Friday': [
-        {
-          'time': '8AM to 10AM', 'className': 'non-adult'
-        },
-        {
-          'time': '10AM to 12PM', 'className': 'non-adult'
-        },
-        {
-          'time': '12PM to 2PM', 'className': 'non-adult'
-        },
-        {
-          'time': '2PM to 4PM', 'className': 'non-adult'
-        },
-        {
-          'time': '4PM to 6PM', 'className': 'non-adult'
-        },
-        {
-          'time': '6PM to 8PM', 'className': 'non-adult'
-        },
-        {
-          'time': '8PM to 10PM', 'className': 'all-ages'
-        },
-        {
-          'time': '10PM to 12AM', 'className': 'all-ages'
-        },
-        {
-          'time': '12AM to 2AM', 'className': 'all-ages'
-        }
-      ],
-      "Saturday": [
-        {
-          'time': '8AM to 10AM', 'className': 'non-adult'
-        },
-        {
-          'time': '10AM to 12PM', 'className': 'non-adult'
-        },
-        {
-          'time': '12PM to 2PM', 'className': 'non-adult'
-        },
-        {
-          'time': '2PM to 4PM', 'className': 'non-adult'
-        },
-        {
-          'time': '4PM to 6PM', 'className': 'non-adult'
-        },
-        {
-          'time': '6PM to 8PM', 'className': 'non-adult'
-        },
-        {
-          'time': '8PM to 10PM', 'className': 'all-ages'
-        },
-        {
-          'time': '10PM to 12AM', 'className': 'all-ages'
-        },
-        {
-          'time': '12AM to 2AM', 'className': 'all-ages'
-        }
-      ],
-      'Sunday': [
-        {
-          'time': '8AM to 10AM', 'className': 'non-adult'
-        },
-        {
-          'time': '10AM to 12PM', 'className': 'non-adult'
-        },
-        {
-          'time': '12PM to 2PM', 'className': 'non-adult'
-        },
-        {
-          'time': '2PM to 4PM', 'className': 'non-adult'
-        }
-      ]
-      }
+
   end
 
   def create
     @panel = EventApplication.create(panel_params)
-    
+    redirect_to root_path
   end
+
+  def show
+    @panel = EventApplication.find(params[:id])
+  end
+  
+
+  def edit
+    @panel = EventApplication.find(params[:id])
+  end
+
+  def update
+    @panel = EventApplication.find(params[:id])
+    if @panel.update(panel_params)
+      redirect_to convention_event_application_path(@convention, @panel), notice: 'Panel was successfully updated.'
+    else
+      render :edit, notice: 'There was an error, please retry.'
+    end
+  end
+  
+  
   
 
   private
@@ -102,13 +50,30 @@ class EventApplicationsController < ApplicationController
       :host_stage_name,
       :age_rating,
       :agreed_to_terms,
-      :first_choice,
-      :second_choice,
-      :third_choice,
-      :event_length,
+      :friday_best_choice,
+      :saturday_best_choice,
+      :sunday_best_choice,
       :previous_convention,
       :user_id,
-      :convention_id
+      :convention_id,
+      time_choice_attributes: [
+        :fri_8_to_11,
+        :fri_11_to_14,
+        :fri_14_to_17,
+        :fri_17_to_20,
+        :fri_20_to_23,
+        :fri_23_to_2,
+        :sat_8_to_11,
+        :sat_11_to_14,
+        :sat_14_to_17,
+        :sat_17_to_20,
+        :sat_20_to_23,
+        :sat_23_to_2,
+        :sun_8_to_11,
+        :sun_11_to_14,
+        :sun_14_to_17
+      ]
+      
     )
   end
   

@@ -49,60 +49,244 @@
   </div>
   <div class="row">
     <h2>Time Choices</h2>
-    <p>Please select your first, second, and third choices for time slots at Holiday Matsuri</p>
+    <p>Below please pick the best time each day for your panel.</p>
   </div>
   <div class="row">
-    <h3>First Choice</h3>
-  </div>
-  <div class="row">
-    <% @timeslots.each do |k, v| %>
-      <div class="col">
-        <h4><%= k %></h4>
-        <% v.each do |t| %>
-        <div class="form-check <%= t[:className] %>">
-          <%= f.radio_button :first_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-          <%= f.label :first_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+    <div class="col-md-12">
+      <%= f.fields_for :time_choice, TimeChoice.new do |t| %>
+      <!-- START FRIDAY -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Friday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 8am to 11am</label>
+              <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", class: "non-adult" %>
+              <datalist id="fri_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+            
+          <!-- Friday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 11am to 2pm</label>
+              <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", class: "non-adult" %>
+              <datalist id="fri_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Friday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 2pm to 5pm</label>
+              <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", class: "non-adult" %>
+              <datalist id="fri_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Friday 5pm to 8pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 5pm to 8pm</label>
+              <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", class: "non-adult" %>
+              <datalist id="fri_17_to_20_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Friday 8pm to 11pm -->
+          <div class="card">
+            <div class="card-body">
+              <label>Friday 8pm to 11pm</label>
+              <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list" %>
+              <datalist id="fri_20_to_23_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Friday 11pm to 2am -->
+          <div class="card">
+            <div class="card-body">
+              <label>Friday 11pm to 2am</label>
+              <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list" %>
+              <datalist id="fri_23_to_2_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
         </div>
-          
-        <% end %>
+      </div>
+      <!-- END FRIDAY -->
+      <!-- START SATURDAY -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Saturday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 8am to 11am</label>
+              <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", class: "non-adult" %>
+              <datalist id="sat_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+            
+          <!-- Saturday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 11am to 2pm</label>
+              <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", class: "non-adult" %>
+              <datalist id="sat_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Saturday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 2pm to 5pm</label>
+              <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", class: "non-adult" %>
+              <datalist id="sat_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Saturday 5pm to 8pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 5pm to 8pm</label>
+              <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", class: "non-adult" %>
+              <datalist id="sat_17_to_20_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Saturday 8pm to 11pm -->
+          <div class="card">
+            <div class="card-body">
+              <label>Saturday 8pm to 11pm</label>
+              <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list" %>
+              <datalist id="sat_20_to_23_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Saturday 11pm to 2am -->
+          <div class="card">
+            <div class="card-body">
+              <label>Saturday 11pm to 2am</label>
+              <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list" %>
+              <datalist id="sat_23_to_2_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SATURDAY -->
+      <!-- START SUNDAY -->
+      <div class="card non-adult">
+        <div class="card-body">
+          <h4 class="card-title">Sunday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 8am to 11am</label>
+              <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", class: "non-adult" %>
+              <datalist id="sun_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+            
+          <!-- Sunday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 11am to 2pm</label>
+              <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", class: "non-adult" %>
+              <datalist id="sun_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+          <!-- Sunday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 2pm to 5pm</label>
+              <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", class: "non-adult" %>
+              <datalist id="sun_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
       </div>
       <% end %>
+    </div>
   </div>
-  <div class="row">
-    <h3>Second Choice</h3>
-  </div>
-  <div class="row">
-    <% @timeslots.each do |k, v| %>
-      <div class="col">
-        <h4><%= k %></h4>
-        <% v.each do |t| %>
-        <div class="form-check <%= t[:className] %>">
-          <%= f.radio_button :second_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-          <%= f.label :second_choice, t[:time], class: "#{t[:className]} form-check-label" %>
-        </div>
-          
-        <% end %>
-      </div>
-      <% end %>
-  </div>
-  <div class="row">
-    <h3>Third Choice</h3>
-  </div>
-  <div class="row">
-    <% @timeslots.each do |k, v| %>
-      <div class="col">
-        <h4><%= k %></h4>
-        <% v.each do |t| %>
-        <div class="form-check <%= t[:className] %>">
-          <%= f.radio_button :third_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-          <%= f.label :third_choice, t[:time], class: "#{t[:className]} form-check-label" %>
-        </div>
-          
-        <% end %>
-      </div>
-      <% end %>
-  </div>
-  
   
   
   <%= f.hidden_field(:convention_id, :value => @convention.id) %>
@@ -116,9 +300,12 @@
       var age = $("#event_application_age_rating").val();
       console.log(age)
       if(age == "18+"){
-        $('.non-adult').addClass('d-none')
+        $('.non-adult').addClass('d-none');
+        $("input.non-adult").val(0);
       }else{
         $('.non-adult').removeClass('d-none')
       }
     })
+    
+    
   </script>

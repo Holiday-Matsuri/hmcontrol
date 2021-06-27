@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_030424) do
+ActiveRecord::Schema.define(version: 2021_06_26_195928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,6 @@ ActiveRecord::Schema.define(version: 2021_05_26_030424) do
     t.string "host_stage_name"
     t.string "age_rating"
     t.boolean "agreed_to_terms"
-    t.string "first_choice"
-    t.string "second_choice"
-    t.string "third_choice"
     t.string "event_length"
     t.boolean "previous_convention"
     t.integer "application_score"
@@ -60,6 +57,21 @@ ActiveRecord::Schema.define(version: 2021_05_26_030424) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "convention_id", null: false
+    t.string "friday_best_choice"
+    t.string "friday_good_choices"
+    t.string "friday_dont_cares"
+    t.string "friday_would_rather_nots"
+    t.string "friday_cant_dos"
+    t.string "saturday_best_choice"
+    t.string "saturday_good_choice"
+    t.string "saturday_dont_care"
+    t.string "saturday_would_rather_not"
+    t.string "saturday_cant_do"
+    t.string "sunday_best_choice"
+    t.string "sunday_good_choice"
+    t.string "sunday_dont_care"
+    t.string "sunday_would_rather_not"
+    t.string "sunday_cant_do"
     t.index ["convention_id"], name: "index_event_applications_on_convention_id"
     t.index ["user_id"], name: "index_event_applications_on_user_id"
   end
@@ -93,6 +105,28 @@ ActiveRecord::Schema.define(version: 2021_05_26_030424) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "time_choices", force: :cascade do |t|
+    t.bigint "event_application_id", null: false
+    t.integer "fri_8_to_11"
+    t.integer "fri_11_to_14"
+    t.integer "fri_14_to_17"
+    t.integer "fri_17_to_20"
+    t.integer "fri_20_to_23"
+    t.integer "fri_23_to_2"
+    t.integer "sat_8_to_11"
+    t.integer "sat_11_to_14"
+    t.integer "sat_14_to_17"
+    t.integer "sat_17_to_20"
+    t.integer "sat_20_to_23"
+    t.integer "sat_23_to_2"
+    t.integer "sun_8_to_11"
+    t.integer "sun_11_to_14"
+    t.integer "sun_14_to_17"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_application_id"], name: "index_time_choices_on_event_application_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -117,4 +151,5 @@ ActiveRecord::Schema.define(version: 2021_05_26_030424) do
   add_foreign_key "event_applications", "users"
   add_foreign_key "events", "conventions"
   add_foreign_key "events", "users"
+  add_foreign_key "time_choices", "event_applications"
 end
