@@ -52,192 +52,239 @@
     <p>Below please pick the best time each day for your panel.</p>
   </div>
   <div class="row">
-    <h3>Friday</h3>
-  </div>
-  <div class="row">
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">This is the Best Time for my panel</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.radio_button :friday_best_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-            <%= f.label :friday_best_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+    <div class="col-md-12">
+      <%= f.fields_for :time_choice, TimeChoice.new do |t| %>
+      <!-- START FRIDAY -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Friday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 8am to 11am</label>
+              <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", class: "non-adult" %>
+              <datalist id="fri_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I can do these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <!-- <input multiple type="checkbox" value="<%= t[:time] %>" name="event_application[friday_good_choice][]"> -->
-            <%= f.check_box :friday_good_choices, {mulitple: true}, t[:time], false %>
-            <%= f.label :friday_good_choices, t[:time], class: "#{t[:className]} form-check-label" %>
+            
+          <!-- Friday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 11am to 2pm</label>
+              <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", class: "non-adult" %>
+              <datalist id="fri_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I feel indifferent about these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :friday_dont_cares, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :friday_dont_cares, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Friday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 2pm to 5pm</label>
+              <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", class: "non-adult" %>
+              <datalist id="fri_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Would Rather Not do these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :friday_would_rather_nots, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :friday_would_rather_nots, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Friday 5pm to 8pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Friday 5pm to 8pm</label>
+              <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", class: "non-adult" %>
+              <datalist id="fri_17_to_20_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Can't Do this these Times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :friday_cant_dos, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :friday_cant_dos, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Friday 8pm to 11pm -->
+          <div class="card">
+            <div class="card-body">
+              <label>Friday 8pm to 11pm</label>
+              <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list" %>
+              <datalist id="fri_20_to_23_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-  </div>
-
-  <div class="row">
-    <h3>Saturday</h3>
-  </div>
-  <div class="row">
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">This is the Best Time for my panel</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.radio_button :saturday_best_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-            <%= f.label :saturday_best_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Friday 11pm to 2am -->
+          <div class="card">
+            <div class="card-body">
+              <label>Friday 11pm to 2am</label>
+              <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list" %>
+              <datalist id="fri_23_to_2_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I can do these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :saturday_good_choice, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :saturday_good_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+        </div>
+      </div>
+      <!-- END FRIDAY -->
+      <!-- START SATURDAY -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Saturday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 8am to 11am</label>
+              <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", class: "non-adult" %>
+              <datalist id="sat_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I feel indifferent about these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :saturday_dont_care, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :saturday_dont_care, t[:time], class: "#{t[:className]} form-check-label" %>
+            
+          <!-- Saturday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 11am to 2pm</label>
+              <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", class: "non-adult" %>
+              <datalist id="sat_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Would Rather Not do these times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :saturday_would_rather_not, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :saturday_would_rather_not, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Saturday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 2pm to 5pm</label>
+              <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", class: "non-adult" %>
+              <datalist id="sat_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Can't Do this these Times</h6>
-        <% @full_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :saturday_cant_do, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :saturday_cant_do, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Saturday 5pm to 8pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Saturday 5pm to 8pm</label>
+              <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", class: "non-adult" %>
+              <datalist id="sat_17_to_20_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-  </div>
-
-  <div class="row non-adult">
-    <h3>Sunday</h3>
-  </div>
-  <div class="row non-adult">
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">This is the Best Time for my panel</h6>
-        <% @half_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.radio_button :sunday_best_choice, t[:time], class: "#{t[:className]} form-check-input" %>
-            <%= f.label :sunday_best_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Saturday 8pm to 11pm -->
+          <div class="card">
+            <div class="card-body">
+              <label>Saturday 8pm to 11pm</label>
+              <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list" %>
+              <datalist id="sat_20_to_23_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I can do these times</h6>
-        <% @half_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :sunday_good_choice, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil %>
-            <%= f.label :sunday_good_choice, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Saturday 11pm to 2am -->
+          <div class="card">
+            <div class="card-body">
+              <label>Saturday 11pm to 2am</label>
+              <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list" %>
+              <datalist id="sat_23_to_2_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">I feel indifferent about these times</h6>
-        <% @half_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :sunday_dont_care, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil  %>
-            <%= f.label :sunday_dont_care, t[:time], class: "#{t[:className]} form-check-label" %>
+        </div>
+      </div>
+      <!-- END SATURDAY -->
+      <!-- START SUNDAY -->
+      <div class="card non-adult">
+        <div class="card-body">
+          <h4 class="card-title">Sunday</h4>
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 8am to 11am</label>
+              <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", class: "non-adult" %>
+              <datalist id="sun_8_to_11_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Would Rather Not do these times</h6>
-        <% @half_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :sunday_would_rather_not, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil  %>
-            <%= f.label :sunday_would_rather_not, t[:time], class: "#{t[:className]} form-check-label" %>
+            
+          <!-- Sunday 11am to 2pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 11am to 2pm</label>
+              <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", class: "non-adult" %>
+              <datalist id="sun_11_to_14_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
-    </div>
-    <div class="col card">
-      <div class="card-body">
-        <h6 class="card-title">Can't Do this these Times</h6>
-        <% @half_day.each do |t| %>
-          <div class="form-check <%= t[:className] %>">
-            <%= f.check_box :sunday_cant_do, {mulitple: true, class: "#{t[:className]} form-check-input"}, t[:time], nil  %>
-            <%= f.label :sunday_cant_do, t[:time], class: "#{t[:className]} form-check-label" %>
+          <!-- Sunday 2pm to 5pm -->
+          <div class="card non-adult">
+            <div class="card-body">
+              <label>Sunday 2pm to 5pm</label>
+              <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", class: "non-adult" %>
+              <datalist id="sun_14_to_17_list">
+                <option value="1" label="Can't Do"></option>
+                <option value="2" label="Would Rather Not"></option>
+                <option value="3" label="Don't Care"></option>
+                <option value="4" label="Can do"></option>
+                <option value="5" label="Best Choice"></option>
+              </datalist>
+            </div>
           </div>
-        <% end %>
-      </div> 
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
   
