@@ -1,10 +1,16 @@
 class EventApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_convention
+  before_action :set_panel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @panels = EventApplication.where(user_id: current_user.id)
+    @submitted = EventApplication.submitted.where(user_id: current_user.id)
+    @approved = EventApplication.approved.where(user_id: current_user.id)
+    @rejected = EventApplication.rejected.where(user_id: current_user.id)
+    @scheduled = EventApplication.scheduled.where(user_id: current_user.id)
+    @waitlist = EventApplication.waitlist.where(user_id: current_user.id)
   end
+
   def new
     @panel = EventApplication.new
 
@@ -12,31 +18,39 @@ class EventApplicationsController < ApplicationController
 
   def create
     @panel = EventApplication.create(panel_params)
+    @panel.update(application_status: 'submitted')
     redirect_to root_path
   end
 
   def show
-    @panel = EventApplication.find(params[:id])
+    authorize! :read, @panel
   end
   
 
   def edit
-    @panel = EventApplication.find(params[:id])
+    authorize! :edit, @panel
   end
 
   def update
-    @panel = EventApplication.find(params[:id])
     if @panel.update(panel_params)
       redirect_to convention_event_application_path(@convention, @panel), notice: 'Panel was successfully updated.'
     else
       render :edit, notice: 'There was an error, please retry.'
     end
   end
+  def destroy
+    authorize! :destroy, @panel
+    @panel.destroy
+  end
   
   
   
 
   private
+  def set_panel
+    @panel = EventApplication.friendly.find(params[:id])
+  end
+  
 
   def set_convention
     @convention = Convention.where(status: 'active').first
@@ -46,6 +60,7 @@ class EventApplicationsController < ApplicationController
     params.require(:event_application).permit(
       :event_name,
       :external_desc,
+      :event_length,
       :internal_desc,
       :host_stage_name,
       :age_rating,

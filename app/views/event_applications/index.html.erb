@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>My Panels</h1>
+  </div>
+  <div class="col-md-3">
+    <div class="row"><h4>Submitted</h4></div>
+    <div class="row">
+      <ul class="list-group">
+        <% @submitted.each do |panel| %>
+          <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel.slug) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row"><h4>Approved</h4></div>
+    <div class="row">
+      <ul class="list-group">
+        <% @approved.each do |panel| %>
+          <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row"><h4>Rejected</h4></div>
+    <div class="row">
+      <ul class="list-group">
+        <% @rejected.each do |panel| %>
+          <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row"><h4>Wait Listed</h4></div>
+    <div class="row">
+      <ul class="list-group">
+        <% @waitlist.each do |panel| %>
+          <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="row">
+      <h4>Scheduled</h4>
+    </div>
+    <div class="row">
+      <ul class="list-group">
+        <% @scheduled.each do |panel| %>
+          <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

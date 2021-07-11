@@ -8,6 +8,7 @@ class Ability
     can :read , Convention, :status => 'active'
     if user.present?
       can [:edit, :update, :destory], Event, user_id: user.id
+      can [:read, :edit, :update, :destroy], EventApplication, user_id: user.id
     end
     if user.type == 'AdminUser'
       can :manage, :all

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_195928) do
+ActiveRecord::Schema.define(version: 2021_07_09_020926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,22 +57,9 @@ ActiveRecord::Schema.define(version: 2021_06_26_195928) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "convention_id", null: false
-    t.string "friday_best_choice"
-    t.string "friday_good_choices"
-    t.string "friday_dont_cares"
-    t.string "friday_would_rather_nots"
-    t.string "friday_cant_dos"
-    t.string "saturday_best_choice"
-    t.string "saturday_good_choice"
-    t.string "saturday_dont_care"
-    t.string "saturday_would_rather_not"
-    t.string "saturday_cant_do"
-    t.string "sunday_best_choice"
-    t.string "sunday_good_choice"
-    t.string "sunday_dont_care"
-    t.string "sunday_would_rather_not"
-    t.string "sunday_cant_do"
+    t.string "slug"
     t.index ["convention_id"], name: "index_event_applications_on_convention_id"
+    t.index ["slug"], name: "index_event_applications_on_slug", unique: true
     t.index ["user_id"], name: "index_event_applications_on_user_id"
   end
 

@@ -61,7 +61,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 8am to 11am</label>
-              <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", class: "non-adult" %>
+              <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -76,7 +76,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 11am to 2pm</label>
-              <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", class: "non-adult" %>
+              <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -90,7 +90,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 2pm to 5pm</label>
-              <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", class: "non-adult" %>
+              <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -104,7 +104,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 5pm to 8pm</label>
-              <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", class: "non-adult" %>
+              <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_17_to_20_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -118,7 +118,7 @@
           <div class="card">
             <div class="card-body">
               <label>Friday 8pm to 11pm</label>
-              <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list" %>
+              <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list", data: {day: 'friday'} %>
               <datalist id="fri_20_to_23_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -132,7 +132,7 @@
           <div class="card">
             <div class="card-body">
               <label>Friday 11pm to 2am</label>
-              <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list" %>
+              <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list", data: {day: 'friday'} %>
               <datalist id="fri_23_to_2_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -152,7 +152,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 8am to 11am</label>
-              <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", class: "non-adult" %>
+              <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -167,7 +167,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 11am to 2pm</label>
-              <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", class: "non-adult" %>
+              <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -181,7 +181,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 2pm to 5pm</label>
-              <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", class: "non-adult" %>
+              <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -195,7 +195,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 5pm to 8pm</label>
-              <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", class: "non-adult" %>
+              <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_17_to_20_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -209,7 +209,7 @@
           <div class="card">
             <div class="card-body">
               <label>Saturday 8pm to 11pm</label>
-              <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list" %>
+              <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list", data: {day: 'saturday'} %>
               <datalist id="sat_20_to_23_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -223,7 +223,7 @@
           <div class="card">
             <div class="card-body">
               <label>Saturday 11pm to 2am</label>
-              <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list" %>
+              <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list", data: {day: 'saturday'} %>
               <datalist id="sat_23_to_2_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -243,7 +243,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 8am to 11am</label>
-              <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", class: "non-adult" %>
+              <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -258,7 +258,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 11am to 2pm</label>
-              <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", class: "non-adult" %>
+              <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -272,7 +272,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 2pm to 5pm</label>
-              <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", class: "non-adult" %>
+              <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -305,6 +305,18 @@
       }else{
         $('.non-adult').removeClass('d-none')
       }
+    })
+
+    $("input[type='range']").change(function(){
+      var changed = $(this);
+      $("input[type='range']").each(function(){
+        if($(this).val() == 5){
+          console.log($(this).attr('id'))
+          if($(this).attr('id') != changed.attr('id') && $(this).attr('data-day') == changed.attr('data-day')){
+            $(this).val(4)
+          }
+        }
+      })
     })
     
     

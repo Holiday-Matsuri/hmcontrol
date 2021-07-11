@@ -1,1 +1,75 @@
-<%= @panel.inspect %>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @panel.event_name %></h1>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Internal Description</h5>
+        <p class="card-text">
+          <%= @panel.internal_desc %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Event Length: </strong><%= @panel.event_length %></li>
+      <li class="list-group-item"><strong>Age Rating: </strong><%= @panel.age_rating %></li>
+      <li class="list-group-item"><strong>Host: </strong><%= @panel.host_stage_name %></li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">External Description</h5>
+        <p class="card-text">
+          <%= @panel.external_desc %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Time Choices</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Friday</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Friday 8am to 11am: </strong><%= time_choice_enum(@panel.time_choice.fri_8_to_11) %></li>
+          <li class="list-group-item"><strong>Friday 11am to 2pm: </strong><%= time_choice_enum(@panel.time_choice.fri_11_to_14) %></li>
+          <li class="list-group-item"><strong>Friday 2pm to 5pm: </strong><%= time_choice_enum(@panel.time_choice.fri_14_to_17) %></li>
+          <li class="list-group-item"><strong>Friday 5pm to 8pm: </strong><%= time_choice_enum(@panel.time_choice.fri_17_to_20) %></li>
+          <li class="list-group-item"><strong>Friday 8pm to 11pm: </strong><%= time_choice_enum(@panel.time_choice.fri_20_to_23) %></li>
+          <li class="list-group-item"><strong>Friday 11pm to 2am: </strong><%= time_choice_enum(@panel.time_choice.fri_23_to_2) %></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Saturday</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Saturday 8am to 11am: </strong><%= time_choice_enum(@panel.time_choice.sat_8_to_11) %></li>
+          <li class="list-group-item"><strong>Saturday 11am to 2pm: </strong><%= time_choice_enum(@panel.time_choice.sat_11_to_14) %></li>
+          <li class="list-group-item"><strong>Saturday 2pm to 5pm: </strong><%= time_choice_enum(@panel.time_choice.sat_14_to_17) %></li>
+          <li class="list-group-item"><strong>Saturday 5pm to 8pm: </strong><%= time_choice_enum(@panel.time_choice.sat_17_to_20) %></li>
+          <li class="list-group-item"><strong>Saturday 8pm to 11pm: </strong><%= time_choice_enum(@panel.time_choice.sat_20_to_23) %></li>
+          <li class="list-group-item"><strong>Saturday 11pm to 2am: </strong><%= time_choice_enum(@panel.time_choice.sat_23_to_2) %></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Sunday</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Sunday 8am to 11am: </strong><%= time_choice_enum(@panel.time_choice.sun_8_to_11) %></li>
+          <li class="list-group-item"><strong>Sunday 11am to 2pm: </strong><%= time_choice_enum(@panel.time_choice.sun_11_to_14) %></li>
+          <li class="list-group-item"><strong>Sunday 2pm to 5pm: </strong><%= time_choice_enum(@panel.time_choice.sun_14_to_17) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to "Edit Application", edit_convention_event_application_path(@convention, @panel), class: 'btn btn-lg btn-primary' %>
+    <%= link_to "Back", convention_event_applications_path(@convention), class: 'btn btn-lg btn-secondary' %>
+  </div>
+</div>
