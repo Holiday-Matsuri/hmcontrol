@@ -9,6 +9,12 @@ class ProfilesController < ApplicationController
   def update
     @user.update(profile_params)
   end
+
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice: "Account deleted"
+  end
+  
   private
 
   def set_user

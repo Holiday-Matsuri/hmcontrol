@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  background-color: #39996A !important;
 }
 
 body {
@@ -10,12 +11,22 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
+.form-signup{
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 550px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 5px;
+}
 
 .form-signin {
+  background-color: #FFFFFF;
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  border-radius: 5px;
 }
 
 .form-signin .checkbox {
@@ -36,4 +47,37 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.form-signup .checkbox {
+  font-weight: 400;
+}
+
+.form-signup .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signup .top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signup .bottom {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signup .middle {
+  margin-bottom: -1px;
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.validated {
+  color: green !important;
+}
+.invalid {
+  color: red !important;
 }

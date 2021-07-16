@@ -19,6 +19,7 @@ class EventApplicationsController < ApplicationController
   def create
     @panel = EventApplication.create(panel_params)
     @panel.update(application_status: 'submitted')
+    EventApplicationMailer.created_event_application(@panel, current_user).deliver
     redirect_to root_path
   end
 

@@ -1,3 +1,29 @@
-<%= @user.inspect %>
-
-<%= @user.event_applications.inspect %>
+<h1>Hello <%=current_user.username %></h1>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Would you like to?</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <button class="btn btn-lg btn-success">Update Profile</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <button class="btn btn-lg btn-info">View Applications</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <%= link_to "Delete Account", profile_path(current_user.id), method: 'delete', data: {confirm: "Are you sure?"}, class: 'btn btn-lg btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>

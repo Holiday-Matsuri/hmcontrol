@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Thank you for submitting your panel application. We strive to make sure all the content at Holiday Matsuri is fun and safe. Our team will review your application and you will be notified via email when your panel has been reviewed. We look forward to seeing you and having a great convention.</p>
+    <p>Below are the details of your application</p>
+    <p>Panel Name: <%= @panel.event_name %></p>
+    <p>Panel Host Name: <%= @panel.host_stage_name %></p>
+    <p>Age Rating: <%= @panel.age_rating %></p>
+    <p>Panel Length: <%= @panel.event_length %></p>
+    <p>Panel Internal Description:</p>
+    <p><%= @panel.internal_desc %></p>
+    <p>Panel External Description:</p>
+    <p><%= @panel.external_desc %></p>
+
+    <p>You can view your panel application <%= link_to "Here", convention_event_application_url(@convention, @panel) %></p>
+
+  </body>
+</html>
