@@ -1,43 +1,98 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<main class="form-signup">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: true }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+    <h2 class="h3 mb-3 fw-normal">Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'top form-control', placeholder: "name@example.com", required: true  %>
+          <%= f.label :email %>
+        </div>
+        <div class="form-floating">
+          <%= f.password_field :password, class: 'middle form-control', placeholder: 'Password', autocomplete: 'new-password', required: true, data: {'bs-placement': 'left', 'bs-toggle': 'popover', 'bs-html': true, 'bs-content': "Password Requirements:<ul><li class='invalid' id='uppercase-req'>1 Uppercase</li><li class='invalid' id='lowercase-req'>1 Lowercase</li><li class='invalid' id='number-req'>1 Number</li><li class='invalid' id='character-req'>1 Special Character</li><li class='invalid' id='length-req'>length of 8 or more</li></ul>"}  %>
+          <%= f.label :password %>
+        </div>
+        <div class="form-floating">
+          <%= f.password_field :password_confirmation, class: 'bottom form-control', placeholder: 'Re-enter Password', autocomplete: 'new-password', required: true  %>
+          <%= f.label :password_confirmation %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating">
+          <%= f.text_field :username, autocomplete: "username", class: 'top form-control', placeholder: "johndoe", required: true %>
+          <%= f.label :username %>
+        </div>
+        <div class="form-floating">
+          <%= f.text_field :first_name, class: 'middle form-control', placeholder: "John", required: true  %>
+          <%= f.label :first_name %>
+        </div>
+        <div class="form-floating">
+          <%= f.text_field :last_name, class: 'bottom form-control', placeholder: "Doe", required: true  %>
+          <%= f.label :last_name %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>Cancel my account</h3>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <%= link_to "Back", root_path %>
+      </div>
+      
+    </div>
+    
+    
+    <div class="actions">
+      <%= f.submit "Edit Profile", class: "w-100 btn btn-lg btn-primary"  %>
+    </div>
   <% end %>
+</main>
+<script>
+  $('#user_password').on('input', function(){
+    regexCheck($(this));
+  })
+  function regexCheck(item){
+    var uppercase = new RegExp('(?=.*[A-Z])');
+    var lowercase = new RegExp('(?=.*[a-z])');
+    var number = new RegExp('(?=.*[0-9])');
+    var character = new RegExp('(?=.*?[#?!@$%^&*-])');
+    var pw = item.val();
+    if(uppercase.test(pw)){
+      $('#uppercase-req').addClass('validated').removeClass('invalid');
 
-  <div class="field">
-    <%= f.label :password %> <em>(leave blank if you don't want to change it)</em><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    }else{
+      $('#uppercase-req').removeClass('validated').addClass('invalid')
+    }
+    if(lowercase.test(pw)){
+      $('#lowercase-req').addClass('validated').removeClass('invalid');
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    }else{
+      $('#lowercase-req').removeClass('validated').addClass('invalid')
+    }
+    if(number.test(pw)){
+      $('#number-req').addClass('validated').removeClass('invalid');
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+    }else{
+      $('#number-req').removeClass('validated').addClass('invalid')
+    }
+    if(character.test(pw)){
+      console.log(character.test(pw));
+      $('#character-req').addClass('validated').removeClass('invalid');
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+    }else{
+      console.log(character.test(pw));
+      $('#character-req').removeClass('validated').addClass('invalid')
+    }
+    if(pw.length >= 8){
+      $('#length-req').addClass('validated').removeClass('invalid');
 
-<h3>Cancel my account</h3>
+    }else{
+      $('#length-req').removeClass('validated').addClass('invalid')
+    }
+  }
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+</script>
 
-<%= link_to "Back", :back %>
+

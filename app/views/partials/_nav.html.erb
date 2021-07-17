@@ -16,8 +16,6 @@
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to 'New Panel Application', new_convention_event_application_path(@convention), class: 'dropdown-item' %></li>
               <li><%= link_to 'My Panel Applications', convention_event_applications_path(@convention), class: 'dropdown-item' %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><%= link_to 'My Panels', convention_events_path(@convention), class: 'dropdown-item' %></li>
             </ul>
           </li>
         <% end %>
@@ -31,7 +29,6 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="profileDropdown">
             <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class: 'dropdown-item' %></li>
-            <li><%= link_to 'Profile', profiles_path, class: 'dropdown-item' %></li>
           </ul>
         <% else %>
           <li class="nav-item">

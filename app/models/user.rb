@@ -11,6 +11,11 @@ class User < ApplicationRecord
   def send_registration_email
     UserMailer.user_creation(self).deliver
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
   
 
   def password_complexity

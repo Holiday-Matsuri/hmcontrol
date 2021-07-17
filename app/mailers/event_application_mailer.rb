@@ -1,4 +1,5 @@
 class EventApplicationMailer < ApplicationMailer
+  default from: 'panels@holidaymatsuri.com'
   def created_event_application(panel, user)
     @user = user
     @panel = panel

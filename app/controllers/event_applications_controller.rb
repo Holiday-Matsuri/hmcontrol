@@ -17,10 +17,15 @@ class EventApplicationsController < ApplicationController
   end
 
   def create
-    @panel = EventApplication.create(panel_params)
+    @panel = EventApplication.new(panel_params)
     @panel.update(application_status: 'submitted')
-    EventApplicationMailer.created_event_application(@panel, current_user).deliver
-    redirect_to root_path
+    if @panel.save
+      EventApplicationMailer.created_event_application(@panel, current_user).deliver
+      redirect_to root_path, notice: 'Panel was successfully created.'
+    else
+      
+      render :new, notice: 'There was an error, please retry.'
+    end
   end
 
   def show
