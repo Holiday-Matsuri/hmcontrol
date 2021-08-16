@@ -4,8 +4,8 @@ AdminUser.create!(
   first_name: 'Holly',
   last_name: 'Mat',
   username: 'administrator',
-  password: 'asdfasdf',
-  password_confirmation: 'asdfasdf'
+  password: 'E1n$tein15Floof',
+  password_confirmation: 'E1n$tein15Floof'
 )
 
 #staff
@@ -15,16 +15,16 @@ StaffUser.create!(
   first_name: 'Kaleb',
   last_name: 'Parker',
   username: 'kparker',
-  password: 'asdfasdf',
-  password_confirmation: 'asdfasdf'
+  password: 'E1n$tein15Floof',
+  password_confirmation: 'E1n$tein15Floof'
 )
 StaffUser.create!(
   email: 'staff2@test.com',
   first_name: 'John',
   last_name: 'Minicozzi',
   username: 'jminicozzi',
-  password: 'asdfasdf',
-  password_confirmation: 'asdfasdf'
+  password: 'E1n$tein15Floof',
+  password_confirmation: 'E1n$tein15Floof'
 )
 # users
 User.create!(
@@ -32,8 +32,8 @@ User.create!(
   first_name: 'Andrea',
   last_name: 'Martin',
   username: 'gawkymarauder',
-  password: 'asdfasdf',
-  password_confirmation: 'asdfasdf'
+  password: 'E1n$tein15Floof',
+  password_confirmation: 'E1n$tein15Floof'
 )
 
 # convention

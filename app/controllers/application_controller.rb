@@ -25,24 +25,23 @@ class ApplicationController < ActionController::Base
   
   def authenticate_staff
     authenticate_user!
-    if current_user.type != "AdminUser" || current_user.type != "StaffUser"
+    unless current_user.type == "AdminUser" || current_user.type == "StaffUser"
+      puts current_user.type
       flash[:alert] = "You are not Authorized to View this Page."
-      redirect_to :back
+      redirect_to root_path
     end
   end
 
   def authenticate_admin
     authenticate_user!
     if current_user.type != "AdminUser"
+      puts current_user.type
       flash[:alert] = "You are not Authorized to View this Page."
-      redirect_to :back
+      redirect_to root_path
     end
   end
 
   def set_active_convention!
     @convention = Convention.active.first
   end
-  
-  
-  
 end

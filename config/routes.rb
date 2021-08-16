@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'static#root'
   namespace :admin do
+    get '/', to: "admin#index"
+    resources :applications
     resources :users
     resources :application_reviews, controller: :application_reviews
   end

@@ -2,6 +2,7 @@ class EventApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_convention
   before_action :set_panel, only: [:show, :edit, :update, :destroy]
+  before_action :check_panel_count
 
   def index
     @submitted = EventApplication.submitted.where(user_id: current_user.id)
@@ -21,6 +22,7 @@ class EventApplicationsController < ApplicationController
     @panel.update(application_status: 'submitted')
     if @panel.save
       EventApplicationMailer.created_event_application(@panel, current_user).deliver
+      @convention.panel_cap_check(EventApplication.where(convention_id: @convention.id).count)
       redirect_to root_path, notice: 'Panel was successfully created.'
     else
       
@@ -53,6 +55,18 @@ class EventApplicationsController < ApplicationController
   
 
   private
+
+  def check_panel_count
+    count = EventApplication.where(convention_id: @convention.id).count
+    if count >= @convention.panel_soft_cap.to_i
+      if Date.today >= @convention.panel_hard_cap_date
+        @lockout = true
+      else
+        @lockout = false
+      end
+    end
+  end
+  
   def set_panel
     @panel = EventApplication.friendly.find(params[:id])
   end

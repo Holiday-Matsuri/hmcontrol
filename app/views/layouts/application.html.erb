@@ -17,7 +17,17 @@
         <%= msg %>
       </div>
     <% end %>
+    <% if @lockout == false %>
+      <div class="alert alert-info">
+        The Submission Window for Panels will end on <%= @convention.panel_hard_cap_date %>. Please make sure you have your panel in by this date. We do not guarantee any panels submitted outside this timeframe will be considered for scheduling.
+      </div>
+    <% elsif @lockout == true %>
+      <div class="alert alert-danger">
+        The Panel Submission window has passed. You may submit your panel but we do not guarantee that it will be considered for Holiday Matsuri 2021. Thank you all that have submitted your panels! We look forward to reviewing them!
+      </div>
+    <% end %>
     <div class="container">
+      
       <%= yield %>
     </div>
   </body>
