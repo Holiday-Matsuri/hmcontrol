@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @panel.event_name %></h1>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Internal Description</h5>
+        <p class="card-text">
+          <%= @panel.internal_desc %>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">External Description</h5>
+        <p class="card-text">
+          <%= @panel.external_desc %>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Event Length: </strong><%= @panel.event_length %></li>
+          <li class="list-group-item"><strong>Age Rating: </strong><%= @panel.age_rating %></li>
+          <li class="list-group-item"><strong>Host: </strong><%= @panel.host_stage_name %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
