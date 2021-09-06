@@ -59,7 +59,7 @@ class EventApplicationsController < ApplicationController
   def check_panel_count
     count = EventApplication.where(convention_id: @convention.id).count
     if count >= @convention.panel_soft_cap.to_i
-      if Date.today >= @convention.panel_hard_cap_date +1.day
+      if Date.today >= @convention.panel_hard_cap_date + 24.hours
         @lockout = true
       else
         @lockout = false
