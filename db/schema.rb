@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_160051) do
+ActiveRecord::Schema.define(version: 2021_09_07_013512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_160051) do
     t.integer "style"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "comments"
     t.index ["convention_id"], name: "index_application_reviews_on_convention_id"
     t.index ["event_application_id"], name: "index_application_reviews_on_event_application_id"
     t.index ["user_id"], name: "index_application_reviews_on_user_id"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_160051) do
     t.string "slug"
     t.integer "review_count", default: 0
     t.boolean "review_lock", default: false
+    t.string "panel_category"
     t.index ["convention_id"], name: "index_event_applications_on_convention_id"
     t.index ["slug"], name: "index_event_applications_on_slug", unique: true
     t.index ["user_id"], name: "index_event_applications_on_user_id"

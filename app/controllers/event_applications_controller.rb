@@ -19,7 +19,7 @@ class EventApplicationsController < ApplicationController
 
   def create
     @panel = EventApplication.new(panel_params)
-    @panel.update(application_status: 'submitted')
+    @panel.update(application_status: 'waitlist')
     if @panel.save
       EventApplicationMailer.created_event_application(@panel, current_user).deliver
       @convention.panel_cap_check(EventApplication.where(convention_id: @convention.id).count)
@@ -36,6 +36,9 @@ class EventApplicationsController < ApplicationController
   
 
   def edit
+    if Date.today >= @convention.panel_hard_cap_date + 24.hours && @panel.submitted?
+      redirect_to root_path, notice: 'Your panel has been submitted for review and can no longer be edited'
+    end
     authorize! :edit, @panel
   end
 

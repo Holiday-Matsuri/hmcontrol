@@ -4,6 +4,7 @@ class EventApplication < ApplicationRecord
   belongs_to :user
   belongs_to :convention
   has_many :application_reviews
+  has_many :users, through: :application_reviews
   has_one :time_choice, dependent: :destroy
   accepts_nested_attributes_for :time_choice, allow_destroy: true
   enum application_status: [:submitted, :approved, :rejected, :scheduled, :waitlist, :secondary, :reviewing]
@@ -21,6 +22,12 @@ class EventApplication < ApplicationRecord
   def set_review_lock
     self.application_status = "reviewing"
   end
+  def self.has_not_been_reviewed(user)
+    
+  end
+  
+
+  
   
   
 end
