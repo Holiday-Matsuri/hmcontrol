@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :events
   has_many :event_applications, dependent: :destroy
   validate :password_complexity
-  has_many :application_reviews
+  has_many :reviews
   # after_create :send_registration_email
 
   def send_registration_email

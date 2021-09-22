@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get '/', to: "admin#index"
     resources :applications
     resources :users
-    resources :application_reviews, controller: :application_reviews
+    resources :reviews, controller: :reviews
   end
   resources :conventions, only: [:index, :show] do
     resources :events, only: [:index, :show]

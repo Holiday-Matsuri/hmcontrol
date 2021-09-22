@@ -10,27 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_013512) do
+ActiveRecord::Schema.define(version: 2021_09_22_013822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "application_reviews", force: :cascade do |t|
-    t.bigint "convention_id", null: false
-    t.bigint "event_application_id", null: false
-    t.bigint "user_id", null: false
-    t.integer "feasibility"
-    t.integer "relevance"
-    t.integer "structure"
-    t.integer "fun_factor"
-    t.integer "style"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "comments"
-    t.index ["convention_id"], name: "index_application_reviews_on_convention_id"
-    t.index ["event_application_id"], name: "index_application_reviews_on_event_application_id"
-    t.index ["user_id"], name: "index_application_reviews_on_user_id"
-  end
 
   create_table "conventions", force: :cascade do |t|
     t.integer "year"
@@ -100,6 +83,22 @@ ActiveRecord::Schema.define(version: 2021_09_07_013512) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "feasibility"
+    t.integer "relevance"
+    t.integer "structure"
+    t.integer "fun_factor"
+    t.integer "style"
+    t.text "comments"
+    t.bigint "event_application_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_score"
+    t.index ["event_application_id"], name: "index_reviews_on_event_application_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "time_choices", force: :cascade do |t|
     t.bigint "event_application_id", null: false
     t.integer "fri_8_to_11"
@@ -139,9 +138,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_013512) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "application_reviews", "conventions"
-  add_foreign_key "application_reviews", "event_applications"
-  add_foreign_key "application_reviews", "users"
   add_foreign_key "event_applications", "conventions"
   add_foreign_key "event_applications", "users"
   add_foreign_key "events", "conventions"

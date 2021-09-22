@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row g-5 text-center">
+    <div class="col-3">
+      <div class="p-3 border">
+        <h5>Total Panels:</h5>
+        <h2><%= @total_panels %></h2>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="p-3 border">
+        <h5>Percent Reviewed:</h5>
+        <h2><%= ((@reviewed_panels.count / @total_panels.to_f) * 100).round(2)  %> %</h2>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="p-3 border">
+        <%= link_to "Review a Panel!", new_admin_review_path, class: 'btn btn-large btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+<h1>
+  Reviewed Panels
+</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Panel Name</th>
+    <th>Host</th>
+    <th>Status</th>
+    <th>Avg Total Score</th>
+  </tr>
+  <% @reviewed_panels.each do |panel| %>
+    <tr>
+      <td><%= link_to panel.event_name, admin_review_path(panel) %></td>
+      <td><%= panel.host_stage_name %></td>
+      <td><%= panel.application_status %></td>
+      <td><%= panel.reviews.average(:total_score) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h1>
+  Un-Reviewed Panels
+</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Panel Name</th>
+    <th>Host</th>
+    <th>Status</th>
+  </tr>
+  <% @not_reviewed.each do |panel| %>
+    <tr>
+      <td><%= panel.event_name %></td>
+      <td><%= panel.host_stage_name %></td>
+      <td><%= panel.application_status %></td>
+    </tr>
+  <% end %>
+</table>
+

@@ -8,7 +8,8 @@
         <h2>Panel Info</h2>
         <ul class="list-group">
           <li class="list-group-item">Host: <%= @panel.host_stage_name %></li>
-          <li class="list-group-item">Hosted at previous Holiday Matsuri? <%= @panel.previous_convention %></li>
+          <li class="list-group-item">Age Rating: <%= @panel.age_rating %></li>
+          <li class="list-group-item">Hosted at previous Holiday Matsuri? <%= @panel.previous_convention.to_s.titleize %></li>
         </ul>
       </div>
     </div>
@@ -30,14 +31,17 @@
     </div>
   </div>
   <div class="col-md-4">
-    <%= form_for @review, url: admin_application_reviews_path do |f| %>
-      <div class="col-12">
-        <h4>Scoring</h4>
+    <%= form_for @review, url: admin_reviews_path do |f| %>
+      <div class="row">
+        <div class="col-8">
+          <h4>Scoring</h4>
+        </div>
+        <div class="col-2"><h4>Score</h4></div>
       </div>
       <div class="row">
         <div class="col-8">
           <%= f.label :feasibility %>
-          <%= f.range_field :feasibility, in: 10..100, step: 10, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
+          <%= f.range_field :feasibility, value: 50, in: 10..100, step: 10, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
         </div>
         <div class="col-2">
           <span id="feasibility_value"></span>
@@ -65,7 +69,7 @@
         <div class="col-6">
           <h6>Panel Type</h6>
           <label for="structure_type_label">Recommended Score:</label>
-          <select name="structure_type_label" id="structure_type_label" oninput="document.getElementById('application_review_structure').value = this.value">
+          <select name="structure_type_label" id="structure_type_label" oninput="document.getElementById('review_structure').value = this.value">
             <option selected>Pick a Panel Type</option>
             <option value="10">Fan Ran Q&A (10)</option>
             <option value="80">Performance (80)</option>
@@ -74,14 +78,14 @@
             <option value="50">Game Show (50)</option>
           </select>
           
-          <label for="application_review_structure">Adjusted Score:</label>         
+          <label for="review_structure">Adjusted Score:</label>         
           <%= f.number_field :structure, in: 10..200, step: 10, value: 10 %>
         </div>
         <div class="col-6">
           <h6>Panel Rarity</h6>
           Total Panels with Topic: <%= @count %> (<%= @rarity %> Suggested)
           <br>
-          <label for="application_review_style">Rarity:</label>
+          <label for="review_style">Rarity:</label>
           <%= f.number_field :style, in: 1..100, step: 1, value: @rarity %>
         </div>
       </div>
@@ -96,10 +100,13 @@
       </div>
       <div class="row">
         <h6>Total Score:</h6>
-        <span id="total_score"></span>
+        <span id="total_score">0</span>
+        <%= f.hidden_field :total_score, value: 0 %>
       </div>
 
       <div class="row">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :event_application_id, value: @panel.id %>
         <%= f.submit 'Submit', class: 'btn btn-primary' %>
       </div>
     <% end %>
@@ -109,27 +116,28 @@
   function calculate_total(){
     var total = 0
     
-    feas = $('#application_review_feasibility').val()
+    feas = $('#review_feasibility').val()
     total += parseInt(feas)
-    relevance = $('#application_review_relevance').val()
+    relevance = $('#review_relevance').val()
     total += parseInt(relevance)
-    fun = $('#application_review_fun_factor').val()
+    fun = $('#review_fun_factor').val()
     total += parseInt(fun)
-    p_type = $('#application_review_structure').val()
+    p_type = $('#review_structure').val()
     total += parseInt(p_type)
-    rare = $('#application_review_style').val()
+    rare = $('#review_style').val()
     total += parseInt(rare)
     return total
   }
   $('input').change(function(){
     $('#total_score').text(calculate_total())
+    $('#review_total_score').val(calculate_total())
   })
   $('#structure_type_label').change(function(){
     $('#total_score').text(calculate_total())
     if($(this).val() == 200){
-      $('#application_review_structure').prop('disabled', true)
+      $('#review_structure').prop('readonly', true)
     }else{
-      $('#application_review_structure').prop('disabled', false)
+      $('#review_structure').prop('readonly', false)
     }
   })
 
