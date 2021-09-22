@@ -162,7 +162,7 @@
     var uppercase = new RegExp('(?=.*[A-Z])');
     var lowercase = new RegExp('(?=.*[a-z])');
     var number = new RegExp('(?=.*[0-9])');
-    var character = new RegExp('(?=.*?[#?!@$%^&*-])');
+    var character = new RegExp('(?=.*?[#?!@$%^&*-_])');
     var pw = item.val();
     if(uppercase.test(pw)){
       $('#uppercase-req').addClass('validated').removeClass('invalid');
