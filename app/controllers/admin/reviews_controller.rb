@@ -18,7 +18,9 @@ class Admin::ReviewsController < Admin::AdminController
   def create
     @review = Review.new(review_params)
     if @review.save
-      EventApplication.find(@review.event_application_id).increment!(:review_count)
+      @app = EventApplication.find(@review.event_application_id)
+      @app.increment!(:review_count)
+      @app.update(application_status: 'reviewing')
       flash[:notice] = "Review for #{@review.event_application.event_name} saved!"
       redirect_to new_admin_review_path
     else
