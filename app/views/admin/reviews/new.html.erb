@@ -9,6 +9,7 @@
         <ul class="list-group">
           <li class="list-group-item">Host: <%= @panel.host_stage_name %></li>
           <li class="list-group-item">Age Rating: <%= @panel.age_rating %></li>
+          <li class="list-group-item">Category: <%= @panel.panel_category %></li>
           <li class="list-group-item">Hosted at previous Holiday Matsuri? <%= @panel.previous_convention.to_s.titleize %></li>
         </ul>
       </div>
@@ -33,36 +34,26 @@
   <div class="col-md-4">
     <%= form_for @review, url: admin_reviews_path do |f| %>
       <div class="row">
-        <div class="col-8">
-          <h4>Scoring</h4>
+        <div class="col-12">
+          <h4>Scoring (Out of 100)</h4>
         </div>
-        <div class="col-2"><h4>Score</h4></div>
       </div>
       <div class="row">
-        <div class="col-8">
+        <div class="col-12">
           <%= f.label :feasibility %>
-          <%= f.range_field :feasibility, value: 50, in: 10..100, step: 10, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
-        </div>
-        <div class="col-2">
-          <span id="feasibility_value"></span>
+          <%= f.number_field :feasibility, in: 10..100, step: 10, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">
-        <div class="col-8">
+        <div class="col-12">
           <%= f.label :relevance %>
-          <%= f.range_field :relevance, in: 10..100, step: 10, oninput: "document.getElementById('relevance_value').innerHTML = this.value" %>
-        </div>
-        <div class="col-2">
-          <span id="relevance_value"></span>
+          <%= f.number_field :relevance, in: 10..100, step: 10, oninput: "document.getElementById('relevance_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">
-        <div class="col-8">
-          <%= f.label :fun_factor %>
-          <%= f.range_field :fun_factor, in: 10..100, step: 10, oninput: "document.getElementById('fun_factor_value').innerHTML = this.value" %>
-        </div>
-        <div class="col-2">
-          <span id="fun_factor_value"></span>
+        <div class="col-12">
+          <%= f.label "Presence" %>
+          <%= f.number_field :fun_factor, in: 10..100, step: 10, oninput: "document.getElementById('fun_factor_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">

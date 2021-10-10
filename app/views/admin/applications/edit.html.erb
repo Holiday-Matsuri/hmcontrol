@@ -1,27 +1,6 @@
-<h1>Holiday Matsuri <%=@convention.year %> Panel Application</h1>
-<p>Welcome to the panel submission page. From here you will be able to submit a panel for consideration for Holiday Matsuri.</p>
+<h1>Holiday Matsuri <%=@convention.year %> Panel Application: <%= @panel.event_name %></h1>
 <hr>
-<%= form_for @panel, url: convention_event_application_path(@convention, @panel) do |f| %>
-<div class="row">
-  <div class="col-md-12">
-    <h3>Rules and Info</h3>
-    <p>By submitting this panel you agree to the following rules for panel submission for Holiday Matsuri. </p>
-    <ul>
-      <li>Your event meets the age rating that you are submitting your panel under.</li>
-      <ul>
-        <li>G Rating: No foul language/references to sex, drugs, or alcohol. Meant for all ages to be able to view.</li>
-        <li>13+: Some foul language allowed but not excessive. No references to sex, drugs, alcohol.</li>
-        <li>18+: Adult themes allowed but NO NUDITY! 18+ panels are only able to be scheduled during the after hours event times.</li>
-      </ul>
-      <li>You can only select 1 Best Choice Each day for panels.</li>
-      <li>Panels MUST have an internal and external Description. The internal Description is to help the panel team understand what you are trying to accomplish.  The external Description is what attendees will see.</li>
-      <li>Once your panel goes from submitted to reviewing status, no changes can be made.</li>
-      <li>In order to host a panel at Holiday Matsuri you MUST have a pass for the day you are scheduled to host. You will be required to show proof of pass before we will schedule the panel.</li>
-    </ul>
-  </div>
-</div>
-<div id="panel_app">
-  
+<%= form_for @panel, url: admin_application_path(@panel) do |f| %>
   <div class="row">
     <h2>General Information</h2>
     <hr>
@@ -45,10 +24,10 @@
     </div>
     <div class="col">
       <%= f.label :event_length, class: 'form-label' %>
-      <%= f.select :event_length, options_for_select(['1 Hour', '1.5 Hours', '2 Hours'], 'Select a length'), class: 'form-select' %>
+      <%= f.select :event_length, options_for_select(['1 Hour', '1.5 Hours', '2 Hours'], @panel.event_length), class: 'form-select' %>
 
       <%= f.label :age_rating, class: 'form-label' %>
-      <%= f.select :age_rating, options_for_select(['G Rated', '13+', '18+'], 'Select an Age Rating'), class: 'form-select' %>
+      <%= f.select :age_rating, options_for_select(['G Rated', '13+', '18+'], @panel.age_rating), class: 'form-select' %>
     </div>
     <div class="col">
       <%= f.label "Did you previously host a Panel at Holiday Matsuri 2019?", class: 'form-check-label' %>
@@ -85,7 +64,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 8am to 11am</label>
-              <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", data: {day: 'friday'}, class: "non-adult" %>
+              <%= t.range_field :fri_8_to_11, in: 1..5, value: @panel.time_choice.fri_8_to_11, list: "fri_8_to_11_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -100,7 +79,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 11am to 2pm</label>
-              <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", data: {day: 'friday'}, class: "non-adult" %>
+              <%= t.range_field :fri_11_to_14, in: 1..5, value: @panel.time_choice.fri_11_to_14, list: "fri_11_to_14_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -114,7 +93,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 2pm to 5pm</label>
-              <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", data: {day: 'friday'}, class: "non-adult" %>
+              <%= t.range_field :fri_14_to_17, in: 1..5, value: @panel.time_choice.fri_14_to_17, list: "fri_14_to_17_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -128,7 +107,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Friday 5pm to 8pm</label>
-              <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", data: {day: 'friday'}, class: "non-adult" %>
+              <%= t.range_field :fri_17_to_20, in: 1..5, value: @panel.time_choice.fri_17_to_20, list: "fri_17_to_20_list", data: {day: 'friday'}, class: "non-adult" %>
               <datalist id="fri_17_to_20_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -142,7 +121,7 @@
           <div class="card">
             <div class="card-body">
               <label>Friday 8pm to 11pm</label>
-              <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list", data: {day: 'friday'} %>
+              <%= t.range_field :fri_20_to_23, in: 1..5, value: @panel.time_choice.fri_20_to_23, list: "fri_20_to_23_list", data: {day: 'friday'} %>
               <datalist id="fri_20_to_23_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -156,7 +135,7 @@
           <div class="card">
             <div class="card-body">
               <label>Friday 11pm to 2am</label>
-              <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list", data: {day: 'friday'} %>
+              <%= t.range_field :fri_23_to_2, in: 1..5, value: @panel.time_choice.fri_23_to_2, list: "fri_23_to_2_list", data: {day: 'friday'} %>
               <datalist id="fri_23_to_2_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -176,7 +155,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 8am to 11am</label>
-              <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", data: {day: 'saturday'}, class: "non-adult" %>
+              <%= t.range_field :sat_8_to_11, in: 1..5, value: @panel.time_choice.sat_8_to_11, list: "sat_8_to_11_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -191,7 +170,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 11am to 2pm</label>
-              <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", data: {day: 'saturday'}, class: "non-adult" %>
+              <%= t.range_field :sat_11_to_14, in: 1..5, value: @panel.time_choice.sat_11_to_14, list: "sat_11_to_14_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -205,7 +184,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 2pm to 5pm</label>
-              <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", data: {day: 'saturday'}, class: "non-adult" %>
+              <%= t.range_field :sat_14_to_17, in: 1..5, value: @panel.time_choice.sat_14_to_17, list: "sat_14_to_17_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -219,7 +198,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Saturday 5pm to 8pm</label>
-              <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", data: {day: 'saturday'}, class: "non-adult" %>
+              <%= t.range_field :sat_17_to_20, in: 1..5, value: @panel.time_choice.sat_17_to_20, list: "sat_17_to_20_list", data: {day: 'saturday'}, class: "non-adult" %>
               <datalist id="sat_17_to_20_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -233,7 +212,7 @@
           <div class="card">
             <div class="card-body">
               <label>Saturday 8pm to 11pm</label>
-              <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list", data: {day: 'saturday'} %>
+              <%= t.range_field :sat_20_to_23, in: 1..5, value: @panel.time_choice.sat_20_to_23, list: "sat_20_to_23_list", data: {day: 'saturday'} %>
               <datalist id="sat_20_to_23_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -247,7 +226,7 @@
           <div class="card">
             <div class="card-body">
               <label>Saturday 11pm to 2am</label>
-              <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list", data: {day: 'saturday'} %>
+              <%= t.range_field :sat_23_to_2, in: 1..5, value: @panel.time_choice.sat_23_to_2, list: "sat_23_to_2_list", data: {day: 'saturday'} %>
               <datalist id="sat_23_to_2_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -267,7 +246,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 8am to 11am</label>
-              <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", data: {day: 'sunday'}, class: "non-adult" %>
+              <%= t.range_field :sun_8_to_11, in: 1..5, value: @panel.time_choice.sun_8_to_11, list: "sun_8_to_11_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_8_to_11_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -282,7 +261,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 11am to 2pm</label>
-              <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", data: {day: 'sunday'}, class: "non-adult" %>
+              <%= t.range_field :sun_11_to_14, in: 1..5, value: @panel.time_choice.sun_11_to_14, list: "sun_11_to_14_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_11_to_14_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -296,7 +275,7 @@
           <div class="card non-adult">
             <div class="card-body">
               <label>Sunday 2pm to 5pm</label>
-              <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", data: {day: 'sunday'}, class: "non-adult" %>
+              <%= t.range_field :sun_14_to_17, in: 1..5, value: @panel.time_choice.sun_14_to_17, list: "sun_14_to_17_list", data: {day: 'sunday'}, class: "non-adult" %>
               <datalist id="sun_14_to_17_list">
                 <option value="1" label="Can't Do"></option>
                 <option value="2" label="Would Rather Not"></option>
@@ -311,54 +290,26 @@
       <% end %>
     </div>
   </div>
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agreementForPanel">
-  Submit My Panel
-</button>
+  
+  
+  <%= f.hidden_field(:convention_id, :value => @convention.id) %>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
 
-<!-- Modal -->
-<div class="modal fade" id="agreementForPanel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agreementForPanelLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="agreementForPanelLabel">Legal Stuff</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= f.hidden_field(:convention_id, :value => @convention.id) %>
-        <%= f.hidden_field(:user_id, :value => current_user.id) %>
-        <p>By submitting this application, you understand the following:</p>
-        <p> You are submitting this panel application of your own free will, and you are willing to host such an event at Holiday Matsuri 2021 using the details provided. The submission of your application does not mean that you will be automatically accepted to create a panel, and, even if accepted, the most preferred time/day selected may not be available to your panel. Your panel will not grant you access to Holiday Matsuri, and all participants, including Panel Hosts, must pre-purchase a ticket to Holiday Matsuri 2021. If you are selected as a Panel Host, you will not be granted additional access rights to Holiday Matsuri beyond what your ticket grants rights to, with the exception of early access to the panel room prior to your panel for setup.</p>         
-        <p>Holiday Matsuri will not guarantee the technology that is located in the panel room, but will strive to make sure there are base line technology needs for the size of the room (such as speakers with microphones). However, Holiday Matsuri *will not* guarantee that you have the correct cords to attach your presentation/music devices to the provided systems. We will notify panel hosts ahead of time of what technology and setups we expect in the rooms, and we will let you know what kind of cords you should be bringing in order to be compatible with the technology in the room. Wireless or wired internet access will also not be available. We will not provide internet access: You must provide your own, or bring all files in from other sources. Holiday Matsuri will not provide laptops, specialized lighting, or specialized sound equipment for your panel.</p>
-        <p>Holiday Matsuri will provide access to the room, but no attendee showing an official Holiday Matsuri 2021 Badge or Wristband that makes the person eligible for attendance on the day can be prevented from attending your panel, but you can enforce limitations based on seating availability. Conversely, all attendees (including hosts) must have a Badge or Wristband that makes them eligible for attendance for the day of the panel, and if someone does not meet these requirements, you must ask them to not attend your panel. If such a person has an issue, you should report this to a public safety or panel staff member to handle the situation.</p>
-        <p>All panels must follow the Rules and Regulations of attending Holiday Matsuri, and no special exceptions can be made for rules, including props and consumables. Food and drink (except water which is dispensed inside the room) is not permitted inside any of the panel rooms.</p>
-        <p>By typing my name below I agree to the rules of panel submission for Holiday Matsuri.</p>
-        <input type="text" id="digital_sign" class="form-control">
-        <label><span id="full_name"><%= current_user.full_name %></span></label>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= f.submit "Submit Panel", class: 'btn btn-primary', disabled: true %>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  
-  
+  <%= f.submit %>
   <%end%>
-</div>
-
 
   <script>
-    $("#RuleAgree").change(function() {
-    if(this.checked) {
-      $('#panel_app').removeClass('d-none')
-    }else{
-      $('#panel_app').addClass('d-none')
-    }
-});
+    $(document).ready(function(){
+      var age = $("#event_application_age_rating").val();
+      console.log(age)
+      if(age == "18+"){
+        $('.non-adult').addClass('d-none');
+        $("input.non-adult").val(0);
+      }else{
+        $('.non-adult').removeClass('d-none')
+      }
+    })
+    
     $("#event_application_age_rating").change(function(){
       var age = $("#event_application_age_rating").val();
       console.log(age)
@@ -380,14 +331,6 @@
           }
         }
       })
-    })
-    $('#digital_sign').bind('input propertychange',function(){
-      var name = $('#full_name').text();
-      if($(this).val() == name){
-        console.log("Success!");
-        $('#digital_sign').addClass('was-validated')
-        $("input[name='commit']").removeAttr('disabled')
-      }
     })
     
     

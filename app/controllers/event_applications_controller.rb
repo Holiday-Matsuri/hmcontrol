@@ -36,7 +36,7 @@ class EventApplicationsController < ApplicationController
   
 
   def edit
-    if Date.today >= @convention.panel_hard_cap_date + 24.hours && @panel.submitted?
+    if Date.today >= @convention.panel_hard_cap_date + 24.hours && @panel.submitted? && current_user.type != "AdminUser"
       redirect_to root_path, notice: 'Your panel has been submitted for review and can no longer be edited'
     end
     authorize! :edit, @panel
@@ -92,6 +92,7 @@ class EventApplicationsController < ApplicationController
       :saturday_best_choice,
       :sunday_best_choice,
       :previous_convention,
+      :panel_category,
       :user_id,
       :convention_id,
       time_choice_attributes: [

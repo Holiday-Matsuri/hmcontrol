@@ -1,0 +1,30 @@
+<div class="row">
+  <% if @panel == nil %>
+    <h1>No Panels missing Categories!</h1>
+  <% else %>
+    <div class="col-md-12">
+      <h2><%= @panel.event_name %></h2>
+    </div>
+    <div class="col-8">
+      <h5>External Description</h5>
+      <p><%= @panel.external_desc %></p>
+    </div>
+    <div class="col-md-4">
+      <form action="/admin/applications/category/<%= @panel.slug %>" method="post">
+        <div class="mb-3">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <label for="event_application_panel_category" class="form-label">Panel Category</label>
+          <input class="form-control" type="text" name="event_application[panel_category]" id="event_application_panel_category">
+        </div>
+        <div class="mb-3">
+          <input type="submit" name="commit" value="Update Category" class="btn btn-primary" data-disable-with="Update Category">
+        </div>
+      </form>
+    </div>
+    <div class="col-8">
+      <h5>Internal Description</h5>
+      <p><%= @panel.internal_desc %></p>
+    </div>
+  <% end %>
+</div>
+

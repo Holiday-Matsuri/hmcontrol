@@ -17,6 +17,7 @@ var jQuery = require('jquery')
 
 // Import Components
 import AppReviews from '../components/administration/app_review'
+import CategoryFix from '../components/administration/category'
 
 // include jQuery in global and window scope (so you can access it globally)
 // in your web browser, when you type $('.div'), it is actually refering to global.$('.div')
@@ -25,5 +26,6 @@ window.$ = window.jQuery = jQuery;
 
 ReactOnRails.register({
   AppReviews,
+  CategoryFix
 });
 
