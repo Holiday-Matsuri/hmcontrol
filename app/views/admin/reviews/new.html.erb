@@ -41,19 +41,19 @@
       <div class="row">
         <div class="col-12">
           <%= f.label :feasibility %>
-          <%= f.number_field :feasibility, in: 10..100, step: 10, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
+          <%= f.number_field :feasibility, in: 10..100, step: 1, oninput: "document.getElementById('feasibility_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <%= f.label :relevance %>
-          <%= f.number_field :relevance, in: 10..100, step: 10, oninput: "document.getElementById('relevance_value').innerHTML = this.value" %>
+          <%= f.number_field :relevance, in: 10..100, step: 1, oninput: "document.getElementById('relevance_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <%= f.label "Presence" %>
-          <%= f.number_field :fun_factor, in: 10..100, step: 10, oninput: "document.getElementById('fun_factor_value').innerHTML = this.value" %>
+          <%= f.number_field :fun_factor, in: 10..100, step: 1, oninput: "document.getElementById('fun_factor_value').innerHTML = this.value" %>
         </div>
       </div>
       <div class="row">
@@ -70,7 +70,7 @@
           </select>
           
           <label for="review_structure">Adjusted Score:</label>         
-          <%= f.number_field :structure, in: 10..200, step: 10, value: 10 %>
+          <%= f.number_field :structure, in: 10..200, step: 1, value: 10 %>
         </div>
         <div class="col-6">
           <h6>Panel Rarity</h6>
