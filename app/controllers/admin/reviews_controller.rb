@@ -57,9 +57,7 @@ class Admin::ReviewsController < Admin::AdminController
   end
 
   def rarity(count, total)
-    percent = (count.to_f / total).to_f
-    y = 100 - ((percent))*100
-    y.floor
+    100-(10*(count - 1))
   end
   
   
