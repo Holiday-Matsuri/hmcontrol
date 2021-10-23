@@ -2,7 +2,7 @@ class Admin::ReviewsController < Admin::AdminController
   before_action :authenticate_staff
   def index
     @total_panels = EventApplication.where(convention_id: @convention.id).count
-    @reviewed_panels = EventApplication.joins(:reviews).distinct.where(convention_id: @convention.id, application_status: 'reviewed').references(:reviews)
+    @reviewed_panels = EventApplication.joins(:reviews).distinct.where(convention_id: @convention.id).reviewing.references(:reviews)
     @not_reviewed = EventApplication.includes(:reviews).where(convention_id: @convention.id, reviews: { event_application_id: nil })
   end
 
