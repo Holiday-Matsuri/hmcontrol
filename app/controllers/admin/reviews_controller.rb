@@ -1,14 +1,14 @@
 class Admin::ReviewsController < Admin::AdminController
   before_action :authenticate_staff
   def index
-    @total_panels = EventApplication.where(convention_id: @convention.id).count
+    @total_panels = EventApplication.where(convention_id: @convention.id, application_status: 'submitted').count
     @reviewed_panels = EventApplication.joins(:reviews).distinct.where(convention_id: @convention.id).reviewing.references(:reviews)
     @not_reviewed = EventApplication.includes(:reviews).where(convention_id: @convention.id, reviews: { event_application_id: nil })
   end
 
   def new
     @review = Review.new
-    @panel = EventApplication.submitted.where('review_count < 5 AND review_lock = false').where.not(id: Review.where(user_id: current_user.id)).limit(1).order("RANDOM()").first
+    @panel = EventApplication.submitted.order('RANDOM()').first
     @count = EventApplication.where(panel_category: @panel.panel_category).count
     @total = EventApplication.where(convention_id: @convention.id).count
     @rarity = rarity(@count, @total)

@@ -7,6 +7,7 @@ class EventApplicationsController < ApplicationController
   def index
     @submitted = EventApplication.submitted.where(user_id: current_user.id)
     @approved = EventApplication.approved.where(user_id: current_user.id)
+    @reviewed = EventApplication.reviewing.where(user_id: current_user.id)
     @rejected = EventApplication.rejected.where(user_id: current_user.id)
     @scheduled = EventApplication.scheduled.where(user_id: current_user.id)
     @waitlist = EventApplication.waitlist.where(user_id: current_user.id)
