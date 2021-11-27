@@ -6,12 +6,14 @@
           <th scope="col">Panel Name</th>
           <th scope="col">Host / User</th>
           <th></th>
+          <th></th>
         </tr>
-        <% @panels.submitted.each do |panel| %>
+        <% @panels.each do |panel| %>
           <tr>
             <td><%= panel.event_name %></td>
             <td><%= panel.host_stage_name %> / <%= panel.user.username %></td>
             <td><%= link_to "View Application", admin_application_path(panel.slug) %></td>
+            <td><%= link_to "Schedule Event", new_admin_application_scheduling_path(panel.slug) %>
           </tr>
         <% end %>
       </table>

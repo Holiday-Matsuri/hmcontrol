@@ -1,0 +1,7 @@
+<%= form_with model: [:admin, @guest] do |f| %>
+  <%= f.label :guest_name %>
+  <%= f.text_field :guest_name %>
+  <%= f.label :guest_description %>
+  <%= f.text_area :guest_description %>
+  <%= f.submit %>
+<% end %>

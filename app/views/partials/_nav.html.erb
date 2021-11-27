@@ -29,6 +29,17 @@
                 <li><%= link_to 'Missing Categories', admin_applications_category_path, class: 'dropdown-item' %></li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="API Management" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                API Management
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="reviewDropdown">
+                <li><%= link_to 'Guests', admin_guests_path, class: 'dropdown-item' %></li>
+                <li><%= link_to 'Vendors', admin_vendors_path, class: 'dropdown-item' %></li>
+                <li><%= link_to 'Artists', admin_artists_path, class: 'dropdown-item' %></li>
+                <li><%= link_to 'Events', admin_events_path, class: 'dropdown-item' %></li>
+              </ul>
+            </li>
           <% end %>
         <% end %>
       </ul>

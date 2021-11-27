@@ -2,6 +2,9 @@ class Convention < ApplicationRecord
   extend FriendlyId
   friendly_id :convention_title, use: :slugged
   enum status: [:hidden, :active]
+  has_many :vendors
+  has_many :guests
+  has_many :artists
 
   def convention_title
     "holiday-matsuri-#{year.to_s}"

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_013822) do
+ActiveRecord::Schema.define(version: 2021_11_27_154148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name"
+    t.string "artist_location"
+    t.bigint "convention_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["convention_id"], name: "index_artists_on_convention_id"
+  end
 
   create_table "conventions", force: :cascade do |t|
     t.integer "year"
@@ -67,6 +76,8 @@ ActiveRecord::Schema.define(version: 2021_09_22_013822) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.string "age_rating"
+    t.string "location"
+    t.string "host"
     t.index ["convention_id"], name: "index_events_on_convention_id"
     t.index ["slug"], name: "index_events_on_slug"
     t.index ["user_id"], name: "index_events_on_user_id"
@@ -81,6 +92,15 @@ ActiveRecord::Schema.define(version: 2021_09_22_013822) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.string "guest_name"
+    t.text "guest_description"
+    t.bigint "convention_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["convention_id"], name: "index_guests_on_convention_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -138,9 +158,21 @@ ActiveRecord::Schema.define(version: 2021_09_22_013822) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string "vendor_name"
+    t.string "vendor_location"
+    t.bigint "convention_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["convention_id"], name: "index_vendors_on_convention_id"
+  end
+
+  add_foreign_key "artists", "conventions"
   add_foreign_key "event_applications", "conventions"
   add_foreign_key "event_applications", "users"
   add_foreign_key "events", "conventions"
   add_foreign_key "events", "users"
+  add_foreign_key "guests", "conventions"
   add_foreign_key "time_choices", "event_applications"
+  add_foreign_key "vendors", "conventions"
 end

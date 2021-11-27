@@ -2,7 +2,7 @@ class Admin::ApplicationsController < Admin::AdminController
   before_action :set_convention
   before_action :set_panel, only: [:edit, :update, :show, :destroy]
   def index
-    @panels = EventApplication.where(convention_id: @convention.id)
+    @panels = EventApplication.where(convention_id: @convention.id).reviewing
   end
   def show
     

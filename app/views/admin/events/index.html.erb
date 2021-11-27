@@ -1,0 +1,23 @@
+<%= link_to "Add Event", new_admin_event_path, class: 'btn btn-primary' %>
+<table class="table table-striped">
+  <tr>
+    <th>Event Name</th>
+    <th>Location</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Host</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.event_name %></td>
+      <td><%= event.location %></td>
+      <td><%= event.start_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+      <td><%= event.end_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+      <td><%= event.host %></td>
+      <td><%= link_to "Edit", edit_admin_event_path(event), class: 'btn btn-primary' %></td>
+      <td><%= link_to "Remove", admin_event_path(event), method: :delete, data: {confirm: "Are you SURE?????????" }, class: 'btn btn-danger' %></td>
+    </tr>
+  <% end %>
+</table>
