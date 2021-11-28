@@ -11,7 +11,7 @@ class Admin::EventsController < Admin::AdminController
   
   def create
     @event = Event.new(event_params)
-    
+    @convention.update(updated_at: DateTime.now)
     if @event.save
       @event.convention_id = @convention.id
       flash[:success] = "Event #{@event.event_name} has been scheduled"
@@ -32,6 +32,7 @@ class Admin::EventsController < Admin::AdminController
 
   def update
     @event.update(event_params)
+    @event.convention.update(updated_at: DateTime.now)
     if @event.save
       flash[:success] = "Event Updated Successfully"
       redirect_to admin_event_path(@event)
@@ -42,7 +43,9 @@ class Admin::EventsController < Admin::AdminController
   end
 
   def destroy
+    @convention.update(updated_at: DateTime.now)
     @event.delete
+    redirect_to admin_events_path
   end
   private
   def set_admin

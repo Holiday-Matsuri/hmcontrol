@@ -10,6 +10,7 @@ class Admin::VendorsController < Admin::AdminController
   
   def create
     @vendor = Vendor.new(event_params)
+    @convention.update(updated_at: DateTime.now)
     if @vendor.save
       flash[:success] = "Vendor #{@vendor.vendor_name} has been added"
       redirect_to new_admin_vendor_path
@@ -29,6 +30,7 @@ class Admin::VendorsController < Admin::AdminController
 
   def update
     @vendor.update(vendor_params)
+    @vendor.convention.update(updated_at: DateTime.now)
     if @vendor.save
       flash[:success] = "Vendor Updated Successfully"
       redirect_to admin_vendor_path(@vendor)

@@ -4,6 +4,7 @@ class Admin::SchedulingController < Admin::AdminController
     @app = EventApplication.friendly.find(params[:application_id])
   end
   def create
+    @convention.update(updated_at: DateTime.now)
     @app = EventApplication.friendly.find(params[:application_id])
     @event = Event.new(event_params)
     if @event.save

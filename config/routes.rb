@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     resources :conventions, only: [:show] do
+      get 'updated', to: 'conventions#convention_updated'
       resources :events, only: [:index]
       resources :vendors, only: [:index]
       resources :guests, only: [:index]

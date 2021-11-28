@@ -10,6 +10,7 @@ class Admin::GuestsController < Admin::AdminController
   
   def create
     @guest = Guest.new(guest_params)
+    @convention.update(updated_at: DateTime.now)
     @guest.convention = @convention
     if @guest.save
       flash[:success] = "Guest #{@guest.guest_name} has been added"
@@ -30,6 +31,7 @@ class Admin::GuestsController < Admin::AdminController
 
   def update
     @guest.update(guest_params)
+    @guest.convention.update(updated_at: DateTime.now)
     if @guest.save
       flash[:success] = "Guest Updated Successfully"
       redirect_to admin_guest_path(@guest)
@@ -40,6 +42,7 @@ class Admin::GuestsController < Admin::AdminController
   end
 
   def destroy
+    @convention.update(updated_at: DateTime.now)
     @guest.delete
   end
   private

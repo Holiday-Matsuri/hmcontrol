@@ -10,6 +10,7 @@ class Admin::ArtistsController < Admin::AdminController
   
   def create
     @artist = Artist.new(artist_params)
+    @convention.update(updated_at: DateTime.now)
     @artist.convention = @convention
     if @artist.save
       flash[:success] = "Artist #{@artist.artist_name} has been added"
@@ -30,6 +31,7 @@ class Admin::ArtistsController < Admin::AdminController
 
   def update
     @artist.update(artist_params)
+    @artist.convention.up(updated_at: DateTime.now)
     if @artist.save
       flash[:success] = "Artist Updated Successfully"
       redirect_to admin_artist_path(@artist)
@@ -40,6 +42,7 @@ class Admin::ArtistsController < Admin::AdminController
   end
 
   def destroy
+    @convention.update(updated_at: DateTime.now)
     @artist.delete
     redirect_to admin_artists_path
   end
