@@ -9,10 +9,11 @@ class Admin::VendorsController < Admin::AdminController
   end
   
   def create
-    @vendor = Vendor.new(event_params)
-    @convention.update(updated_at: DateTime.now)
+    @vendor = Vendor.new(vendor_params)
+    @vendor.convention_id = @convention.id
     if @vendor.save
       flash[:success] = "Vendor #{@vendor.vendor_name} has been added"
+      @convention.update(updated_at: DateTime.now)
       redirect_to new_admin_vendor_path
     else
       flash[:danger] = "Error Saving vendor"
@@ -47,5 +48,10 @@ class Admin::VendorsController < Admin::AdminController
   def set_vendor
     @vendor = Vendor.find(params[:id])
   end
+
+  def vendor_params
+    params.require(:vendor).permit(:vendor_name, :vendor_location)
+  end
+  
   
 end

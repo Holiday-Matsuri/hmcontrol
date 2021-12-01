@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_154148) do
+ActiveRecord::Schema.define(version: 2021_12_01_034034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,11 @@ ActiveRecord::Schema.define(version: 2021_11_27_154148) do
     t.bigint "convention_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "guest_category"
+    t.text "encoded_image"
+    t.string "slug"
     t.index ["convention_id"], name: "index_guests_on_convention_id"
+    t.index ["slug"], name: "index_guests_on_slug", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
