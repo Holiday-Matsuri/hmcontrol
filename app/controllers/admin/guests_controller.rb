@@ -10,8 +10,6 @@ class Admin::GuestsController < Admin::AdminController
   
   def create
     @guest = Guest.new(guest_params)
-    file_upload = params[:guest][:encoded_image].tempfile
-    @guest.encoded_image = Base64.strict_encode64(File.read(file_upload))
     @convention.update(updated_at: DateTime.now)
     @guest.convention = @convention
     if @guest.save
