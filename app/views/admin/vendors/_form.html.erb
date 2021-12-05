@@ -1,6 +1,6 @@
 <%= form_with model: [:admin, @vendor] do |f| %>
   <%= f.label :vendor_name %>
-  <%= f.text_field :vendor_name %>
+  <%= f.text_field :vendor_name, autofocus: true %>
   <%= f.label :vendor_location %>
   <%= f.text_field :vendor_location %>
   <%= f.submit %>
