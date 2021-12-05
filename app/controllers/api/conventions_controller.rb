@@ -3,7 +3,8 @@ class Api::ConventionsController < ApplicationController
     @convention = Convention.active.first
   end
   def convention_updated
-    @convention = Convention.friendly.find(params[:convention_id])
+    @convention = Convention.active.first
+    d = DateTime.parse(params[:date])
     @updated = []
     if @convention.con_updated?(params[:date]) == true
       if @convention.events_updated?(params[:date]) != nil
