@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_034034) do
+ActiveRecord::Schema.define(version: 2021_12_09_165135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_034034) do
     t.string "guest_category"
     t.text "encoded_image"
     t.string "slug"
+    t.integer "sort_category"
     t.index ["convention_id"], name: "index_guests_on_convention_id"
     t.index ["slug"], name: "index_guests_on_slug", unique: true
   end
