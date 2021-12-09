@@ -47,7 +47,7 @@ class Admin::GuestsController < Admin::AdminController
   end
   private
   def set_guest
-    @guest = Guest.find(params[:id])
+    @guest = Guest.friendly.find(params[:id])
   end
   def guest_params
     params.require(:guest).permit(
