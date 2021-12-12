@@ -8,7 +8,7 @@ json.events do
         json.name item.event_name
         json.description item.external_desc
         json.location item.location
-        # json.hosts item.hosts
+        json.hosts item.host
         json.start_time item.start_datetime.strftime("%l:%M %p")
         json.end_time item.end_datetime.strftime("%l:%M %p")
         json.age_rating item.age_rating
