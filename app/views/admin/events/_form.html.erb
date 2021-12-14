@@ -16,7 +16,7 @@
   <div class="row g-5">
     <div class="col-3">
       <%= f.label :location %>
-      <%= f.select :location, options_for_select(['Main Events', 'Special Events', 'Game Room', 'Cosplay Academy', 'Panel Chicago', 'Panel Miami', 'Panel New Orleans', 'Panel Los Angeles', 'Panel San Francisco', 'Big Panel', 'Cafe'], f.object.location), {}, {class: 'form-select'} %>
+      <%= f.select :location, options_for_select(['Main Events', 'Special Events', 'Game Room', 'Cosplay Academy', 'Panel Chicago', 'Panel Miami', 'Panel New Orleans', 'Panel Los Angeles', 'Panel San Francisco', 'Big Panel', 'Cafe', 'Banquet Room'], f.object.location), {}, {class: 'form-select'} %>
     </div>
     <div class="col-3">
       <%= f.label :host %>
