@@ -2,7 +2,7 @@
   <%= f.label :guest_name %>
   <%= f.text_field :guest_name, autofocus: true %>
   <%= f.label :guest_category %>
-  <%= f.select :guest_category, options_for_select(['Voice Actor', 'Cosplayers', 'DJs', 'Game Room', 'Exhibits'], 'Select Guest Category') %>
+  <%= f.select :guest_category, options_for_select(['Voice Actor', 'Cosplayers', 'DJs', 'Game Room', 'Exhibits'], f.object.guest_category) %>
   <%= f.label :guest_description %>
   <%= f.text_area :guest_description %>
   <%= f.submit %>

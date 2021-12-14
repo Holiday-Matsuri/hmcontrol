@@ -34,7 +34,7 @@ class Admin::VendorsController < Admin::AdminController
     @vendor.convention.update(updated_at: DateTime.now)
     if @vendor.save
       flash[:success] = "Vendor Updated Successfully"
-      redirect_to admin_vendor_path(@vendor)
+      redirect_to admin_vendors_path
     else
       flash[:danger] = "Error"
       render :update

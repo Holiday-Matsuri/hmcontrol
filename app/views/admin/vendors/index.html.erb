@@ -16,7 +16,7 @@
         <tr>
           <td><%= vendor.vendor_name %></td>
           <td><%= vendor.vendor_location %></td>
-          <td><%= link_to "Edit", admin_vendor_path(vendor), class: 'btn btn-primary' %></td>
+          <td><%= link_to "Edit", edit_admin_vendor_path(vendor), class: 'btn btn-primary' %></td>
           <td><%= link_to "Remove", admin_vendor_path(vendor), method: :delete, data: { confirm: 'Are you Sure????' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>

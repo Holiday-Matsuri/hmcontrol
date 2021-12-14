@@ -34,7 +34,7 @@ class Admin::GuestsController < Admin::AdminController
     @guest.convention.update(updated_at: DateTime.now)
     if @guest.save
       flash[:success] = "Guest Updated Successfully"
-      redirect_to admin_guest_path(@guest)
+      redirect_to admin_guests_path
     else
       flash[:danger] = "Error"
       render :update

@@ -35,7 +35,7 @@ class Admin::EventsController < Admin::AdminController
     @event.convention.update(updated_at: DateTime.now)
     if @event.save
       flash[:success] = "Event Updated Successfully"
-      redirect_to admin_event_path(@event)
+      redirect_to admin_events_path
     else
       flash[:danger] = "Error"
       render :update

@@ -34,7 +34,7 @@ class Admin::ArtistsController < Admin::AdminController
     @artist.convention.up(updated_at: DateTime.now)
     if @artist.save
       flash[:success] = "Artist Updated Successfully"
-      redirect_to admin_artist_path(@artist)
+      redirect_to admin_artists_path
     else
       flash[:danger] = "Error"
       render :update

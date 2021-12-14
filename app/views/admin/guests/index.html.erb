@@ -16,7 +16,7 @@
         <tr>
           <td><%= guest.guest_name %></td>
           <td><%= guest.guest_description %></td>
-          <td><%= link_to "Edit", admin_guest_path(guest), class: 'btn btn-primary' %></td>
+          <td><%= link_to "Edit", edit_admin_guest_path(guest), class: 'btn btn-primary' %></td>
           <td><%= link_to "Remove", admin_guest_path(guest), method: :delete, data: { confirm: 'Are you Sure????' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
