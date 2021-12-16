@@ -1,23 +1,77 @@
-<%= link_to "Add Event", new_admin_event_path, class: 'btn btn-primary' %>
-<table class="table table-striped">
-  <tr>
-    <th>Event Name</th>
-    <th>Location</th>
-    <th>Start Time</th>
-    <th>End Time</th>
-    <th>Host</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @events.each do |event| %>
-    <tr>
-      <td><%= event.event_name %></td>
-      <td><%= event.location %></td>
-      <td><%= event.start_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
-      <td><%= event.end_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
-      <td><%= event.host %></td>
-      <td><%= link_to "Edit", edit_admin_event_path(event), class: 'btn btn-primary' %></td>
-      <td><%= link_to "Remove", admin_event_path(event), method: :delete, data: {confirm: "Are you SURE?????????" }, class: 'btn btn-danger' %></td>
-    </tr>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to "Add Event", new_admin_event_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+  <% @events.each do |key, value| %>
+    <% if @events.first[0] == key %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="<%= key.strftime('%A') %>-tab" data-bs-toggle="tab" href="#<%= key.strftime('%A') %>-tabs" role="tab" aria-controls="#<%= key.strftime('%A') %>-tabs" aria-selected="true"><%= key.strftime('%A') %></a>
+      </li>
+    <% else %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="<%= key.strftime('%A') %>-tab" data-bs-toggle="tab" href="#<%= key.strftime('%A') %>-tabs" role="tab" aria-controls="#<%= key.strftime('%A') %>-tabs" aria-selected="true"><%= key.strftime('%A') %></a>
+      </li>
+    <% end %>
   <% end %>
-</table>
+</ul>
+<!-- Tabs navs -->
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex1-content">
+  <% @events.each do |key, value| %>
+    <% if @events.first[0] == key %>
+      <div class="tab-pane fade show active" id="<%= key.strftime('%A') %>-tabs" role="tabpanel" aria-labelledby="<%= key.strftime('%A') %>-tab">
+        <table class="table table-striped">
+          <tr>
+            <th>Event Name</th>
+            <th>Location</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Host</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% value.sort_by(&:start_datetime).each do |event| %>
+            <tr>
+              <td><%= event.event_name %></td>
+              <td><%= event.location %></td>
+              <td><%= event.start_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= event.end_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= event.host %></td>
+              <td><%= link_to "Edit", edit_admin_event_path(event), class: 'btn btn-primary' %></td>
+              <td><%= link_to "Remove", admin_event_path(event), method: :delete, data: {confirm: "Are you SURE?????????" }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% else %>
+      <div class="tab-pane fade show" id="<%= key.strftime('%A') %>-tabs" role="tabpanel" aria-labelledby="<%= key.strftime('%A') %>-tab">
+        <table class="table table-striped">
+          <tr>
+            <th>Event Name</th>
+            <th>Location</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Host</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% value.sort_by(&:start_datetime).each do |event| %>
+            <tr>
+              <td><%= event.event_name %></td>
+              <td><%= event.location %></td>
+              <td><%= event.start_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= event.end_datetime.strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= event.host %></td>
+              <td><%= link_to "Edit", edit_admin_event_path(event), class: 'btn btn-primary' %></td>
+              <td><%= link_to "Remove", admin_event_path(event), method: :delete, data: {confirm: "Are you SURE?????????" }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -2,7 +2,7 @@ class Admin::EventsController < Admin::AdminController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_admin, only: [:new, :create, :edit, :update]
   def index
-    @events = Event.where(convention_id: @convention.id)
+    @events = Event.where(convention_id: @convention.id).group_by_day(day_start: 2){|u| u.start_datetime}
   end
 
   def new
