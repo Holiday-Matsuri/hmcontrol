@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :guests
     resources :vendors
     resources :events
+    resources :conventions do
+      put 'activate', to: 'admin/conventions#active'
+    end
     
   end
   resources :conventions, only: [:index, :show] do

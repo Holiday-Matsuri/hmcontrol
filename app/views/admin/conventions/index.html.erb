@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1>Conventions</h1>
+</div>
+<div class="col-md-12">
+  <% @conventions.each do |con| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Holiday Matsuri <%= con.year %></h5>
+        <p class="card-text"><%= con.description %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Address: </strong><%= con.address %></li>
+        <li class="list-group-item"><strong>Dates: </strong><%= con.start_date.strftime("%b %-d %Y") %> to <%= con.end_date.strftime("%b %-d %Y") %></li>
+      </ul>
+      <div class="card-body">
+        <%= link_to "Edit", edit_admin_convention_path(con), class: 'btn btn-primary' %>
+      </div>
+        <% if !con.status == "active" %>
+          <div class="card-body">
+            <%= link_to 'Activate Convention', admin_convention_activate_path, class: 'btn btn-primary' %>
+          </div>
+        <% else %>
+          <div class="card-body text-white" style="background-color: #39996A;">
+            <strong>ACTIVE</strong>
+          </div>
+        <% end %>
+      
+    </div>
+  <% end %>
+</div>

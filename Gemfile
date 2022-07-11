@@ -56,6 +56,9 @@ gem 'devise'
 
 # Look and Feel
 gem 'friendly_id'
+source "https://token:44DF667D-DC76-4DBB-942C-2312F373BBC5@dl.fontawesome.com/basic/fontawesome-pro/ruby/" do
+  gem "font-awesome-pro-sass", "6.1.1"
+end
 
 # Authorization
 gem 'cancancan'

@@ -1,7 +1,7 @@
 class Convention < ApplicationRecord
   extend FriendlyId
   friendly_id :convention_title, use: :slugged
-  enum status: [:hidden, :active]
+  enum status: [:active, :inactive, :archived]
   has_many :vendors
   has_many :guests
   has_many :artists

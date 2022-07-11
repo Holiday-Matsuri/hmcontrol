@@ -1,0 +1,49 @@
+@import "font-awesome-pro";
+@import "font-awesome-pro/solid";
+@import "font-awesome-pro/regular";
+@import "font-awesome-pro/light";
+@import "font-awesome-pro/thin";
+@import "font-awesome-pro/duotone";
+@import "font-awesome-pro/brands";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.nav .active {
+  color: #39996A !important;
+  background-color: #d2f4ea !important;
+}
+.nav a.text-white:hover{
+  color: #39996A !important;
+  background-color: #d2f4ea !important;
+}
+.fa-item {
+  font-size: 2rem;
+  margin: 10px;
+}
+.hm-background {
+  background-color: #39996A;
+}
+.nav-link:hover {
+  background-color: #d2f4ea;
+  color: #39996A;
+}
+$nav-link-hover-color: #d2f4ea;
+$nav-pills-link-active-color: #39996A;
+$nav-pills-link-active-bg: #d2f4ea;

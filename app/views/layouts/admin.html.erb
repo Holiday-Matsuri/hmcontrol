@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Holiday Matsuri Panels - Admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="h-100">
+
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <%= render 'partials/admin_sidebar' %>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

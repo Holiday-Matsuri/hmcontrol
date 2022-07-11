@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_165135) do
+ActiveRecord::Schema.define(version: 2022_06_11_161807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2021_12_09_165135) do
     t.date "panel_soft_cap_date"
     t.date "panel_hard_cap_date"
     t.boolean "panel_cap_reached"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["slug"], name: "index_conventions_on_slug", unique: true
   end
 
