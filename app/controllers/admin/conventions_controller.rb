@@ -1,5 +1,5 @@
 class Admin::ConventionsController < Admin::AdminController
-  before_action :set_convention, only: [:show, :edit, :update, :archive]
+  before_action :set_convention, only: [:show, :edit, :update]
   skip_before_action :set_active_convention!
   def index
     @conventions = Convention.all
@@ -49,7 +49,9 @@ class Admin::ConventionsController < Admin::AdminController
     Convention.where(status: "active").each do |con|
       con.update(status: 'inactive')
     end
-    @convention.update(status: 'active')
+    convention = Convention.friendly.find(params[:convention_id])
+    convention.update(status: 'active')
+    redirect_to admin_conventions_path
   end
   
   def archive
