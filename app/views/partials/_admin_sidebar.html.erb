@@ -1,56 +1,56 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 hm-background" style="width: 280px;">
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 hm-background min-vh-100">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <span class="fs-4">Holiday Matsuri</span>
+      <span class="fs-5 d-none d-sm-inline">Holiday Matsuri</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <%= link_to admin_path, class: is_active?(admin_path) do %>
           <i class="fa-duotone fa-house"></i>
-          Home
+          <span class="ms-1 d-none d-sm-inline">Home</span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_conventions_path, class: is_active?(admin_conventions_path) do %>
           <i class="fa-duotone fa-landmark"></i>
-          Conventions
+          <span class="ms-1 d-none d-sm-inline">Conventions</span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_events_path, class: is_active?(admin_events_path) do %>
           <i class="fa-duotone fa-dumpster-fire"></i>
-          Panels & Events
+          <span class="ms-1 d-none d-sm-inline">Panels & Events</span>
         <% end %>
       </li>
       <li>
         <%= link_to admin_guests_path, class: is_active?(admin_guests_path) do %>
           <i class="fa-duotone fa-person-booth"></i>
-          Guests
+          <span class="ms-1 d-none d-sm-inline">Guests</span>
         <% end %>
       </li>
       <li>
         <%= link_to admin_artists_path, class: is_active?(admin_artists_path) do %>
           <i class="fa-duotone fa-brush"></i>
-          Artists
+          <span class="ms-1 d-none d-sm-inline">Artists</span>
         <% end %>
       </li>
       <li>
         <%= link_to admin_vendors_path, class: is_active?(admin_vendors_path) do %>
           <i class="fa-duotone fa-money-bill-1"></i>
-          Vendors
+          <span class="ms-1 d-none d-sm-inline">Vendors</span>
         <%end%>
       </li>
       <li class="border-top my-3"></li>
       <li>
         <%= link_to admin_applications_path, class: is_active?(admin_applications_path) do %>
           <i class="fa-duotone fa-memo"></i>
-          Panel Applications
+          <span class="ms-1 d-none d-sm-inline">Panel Applications</span>
         <%end%>
       </li>
       <li>
         <%= link_to admin_reviews_path, class: is_active?(admin_reviews_path) do %>
           <i class="fa-duotone fa-clipboard-list"></i>
-          Panel Reviews
+          <span class="ms-1 d-none d-sm-inline">Panel Reviews</span>
         <%end%>
       </li>
     </ul>
@@ -59,7 +59,7 @@
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-item fa-duotone fa-circle-user"></i>
         
-        <strong><%= @current_user.username %></strong>
+        <strong><span class="ms-1 d-none d-sm-inline"><%= @current_user.username %></span></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownUser1">
         <li>
