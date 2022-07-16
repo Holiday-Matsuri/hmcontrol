@@ -1,22 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-striped">
+<div class="row p-5">
+  <div class="col-12">
+    <h1>Reviewed Applications</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <tr>
+        <th scope="col">Panel Name</th>
+        <th scope="col">Host / User</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @panels.each do |panel| %>
         <tr>
-          <th scope="col">Panel Name</th>
-          <th scope="col">Host / User</th>
-          <th></th>
-          <th></th>
+          <td><%= panel.event_name %></td>
+          <td><%= panel.host_stage_name %> / <%= panel.user.username %></td>
+          <td><%= link_to "View Application", admin_application_path(panel.slug) %></td>
+          <td><%= link_to "Schedule Event", new_admin_application_scheduling_path(panel.slug) %>
         </tr>
-        <% @panels.each do |panel| %>
-          <tr>
-            <td><%= panel.event_name %></td>
-            <td><%= panel.host_stage_name %> / <%= panel.user.username %></td>
-            <td><%= link_to "View Application", admin_application_path(panel.slug) %></td>
-            <td><%= link_to "Schedule Event", new_admin_application_scheduling_path(panel.slug) %>
-          </tr>
-        <% end %>
-      </table>
-    </div>
+      <% end %>
+    </table>
   </div>
 </div>

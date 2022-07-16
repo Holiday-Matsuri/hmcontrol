@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_161807) do
+ActiveRecord::Schema.define(version: 2022_07_16_210243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_161807) do
     t.boolean "panel_cap_reached"
     t.date "start_date"
     t.date "end_date"
+    t.integer "panel_review_lock_count"
     t.index ["slug"], name: "index_conventions_on_slug", unique: true
   end
 

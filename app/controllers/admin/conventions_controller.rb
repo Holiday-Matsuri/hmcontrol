@@ -2,7 +2,7 @@ class Admin::ConventionsController < Admin::AdminController
   before_action :set_convention, only: [:show, :edit, :update]
   skip_before_action :set_active_convention!
   def index
-    @conventions = Convention.all
+    @conventions = Convention.all.order(status: :asc)
   end
 
   def new
@@ -71,7 +71,7 @@ class Admin::ConventionsController < Admin::AdminController
   end
 
   def convention_params
-    params.require(:convention).permit(:year, :address, :description, :start_date, :end_date, :status, :panel_soft_cap)
+    params.require(:convention).permit(:year, :address, :description, :start_date, :end_date, :status, :panel_soft_cap, :panel_review_lock_count)
   end
   
   

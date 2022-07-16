@@ -6,7 +6,7 @@ class EventApplication < ApplicationRecord
   belongs_to :user
   has_one :time_choice, dependent: :destroy
   accepts_nested_attributes_for :time_choice, allow_destroy: true
-  enum application_status: [:submitted, :approved, :rejected, :scheduled, :waitlist, :secondary, :reviewing]
+  enum application_status: [:submitted, :approved, :ready, :scheduled, :waitlist, :secondary, :reviewing]
   validates_presence_of :event_name
   validates_presence_of :event_length
   validates_presence_of :internal_desc

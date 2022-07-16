@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :scheduling, only: [:new, :create]
     end
     resources :users
+    get '/reviews/cancel_review', to: 'reviews#cancel_review'
     resources :reviews, controller: :reviews
     resources :artists
     resources :guests

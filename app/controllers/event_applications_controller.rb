@@ -20,7 +20,11 @@ class EventApplicationsController < ApplicationController
 
   def create
     @panel = EventApplication.new(panel_params)
-    @panel.update(application_status: 'waitlist')
+    if Date.today > @convention.panel_hard_cap_date
+      @panel.update(application_status: 'waitlist')
+    else
+      @panel.update(application_status: 'submitted')
+    end
     if @panel.save
       EventApplicationMailer.created_event_application(@panel, current_user).deliver
       @convention.panel_cap_check(EventApplication.where(convention_id: @convention.id).count)

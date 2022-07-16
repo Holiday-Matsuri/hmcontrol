@@ -7,9 +7,11 @@ class Admin::ReviewsController < Admin::AdminController
   end
 
   def new
+    @reviewed_panels = EventApplication.includes(:reviews).where(application_status: 'submitted', convention_id: @convention.id).where(reviews: {user_id: @current_user.id})
     @review = Review.new
-    @panel = EventApplication.submitted.order('RANDOM()').first
-    @count = EventApplication.where(panel_category: @panel.panel_category).count
+    @panel = EventApplication.where(application_status: 'submitted', convention_id: @convention.id).where.not(id: @reviewed_panels.map(&:id)).order('RANDOM()').first
+    @panel.update(application_status: 'reviewing')
+    @count = EventApplication.where(panel_category: @panel.panel_category, convention_id: @convention.id).count
     @total = EventApplication.where(convention_id: @convention.id).count
     @rarity = rarity(@count, @total)
     # @panel.review_lock = true
@@ -20,16 +22,18 @@ class Admin::ReviewsController < Admin::AdminController
     if @review.save
       @app = EventApplication.find(@review.event_application_id)
       @app.increment!(:review_count)
-      @app.update(application_status: 'reviewing')
+      if @app.review_count == 5
+        @app.update(application_status: 'ready')
+      else
+        @app.update(application_status: 'submitted')
+      end
       flash[:notice] = "Review for #{@review.event_application.event_name} saved!"
-      redirect_to new_admin_review_path
+      redirect_to admin_reviews_path
     else
       flash[:notice] = "ERR"
       render :new
     end
   end
-  
-  
 
   def show
     if current_user.type == "AdminUser"
@@ -39,6 +43,13 @@ class Admin::ReviewsController < Admin::AdminController
       @review = @panel.reviews.where(user_id: current_user.id)
     end
   end
+
+  def cancel_review
+    @app = EventApplication.where(id: params[:app_id])
+    @app.update(application_status: 'submitted')
+    redirect_to admin_reviews_path
+  end
+  
 
   private
 

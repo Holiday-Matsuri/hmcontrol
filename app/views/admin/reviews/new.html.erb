@@ -101,6 +101,9 @@
         <%= f.submit 'Submit', class: 'btn btn-primary' %>
       </div>
     <% end %>
+    <div class="row p-5">
+      <%= link_to 'Cancel Review', admin_reviews_cancel_review_path(app_id: @panel.id), class: 'btn btn-large btn-danger' %>
+    </div>
   </div>
 </div>
 <script>

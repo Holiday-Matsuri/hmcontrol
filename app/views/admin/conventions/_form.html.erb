@@ -14,8 +14,26 @@
     </div>
   </div>
   <div class="row g-5">
- 
+    <div class="col-4">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+    <div class="col-8">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
   </div>
-
-  <%= f.submit class: 'btn btn-primary' %>
+  <div class="row g-5">
+    <div class="col-4">
+      <%= f.label :panel_soft_cap %>
+      <%= f.number_field :panel_soft_cap, in: 0..1000, step: 5, class: 'form-control' %>
+    </div>
+    <div class="col-4">
+      <%= f.label :panel_review_lock_count %>
+      <%= f.number_field :panel_review_lock_count, in: 1..20, step: 1, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="row g-5 p-5">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
 <% end %>
