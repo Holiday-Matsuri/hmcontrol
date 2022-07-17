@@ -19,27 +19,8 @@
             </ul>
           </li>
           <%if current_user.type == "StaffUser" || current_user.type == "AdminUser" %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="reviewDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Applications
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="reviewDropdown">
-                <li><%= link_to 'All Panel Apps', admin_applications_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'All Panel Reviews', admin_reviews_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'Missing Categories', admin_applications_category_path, class: 'dropdown-item' %></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="API Management" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                API Management
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="reviewDropdown">
-                <li><%= link_to 'Conventions', admin_conventions_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'Guests', admin_guests_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'Vendors', admin_vendors_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'Artists', admin_artists_path, class: 'dropdown-item' %></li>
-                <li><%= link_to 'Events', admin_events_path, class: 'dropdown-item' %></li>
-              </ul>
+            <li class="nav-item">
+              <%= link_to 'Admin Panel', admin_path, class: 'nav-link' %>
             </li>
           <% end %>
         <% end %>

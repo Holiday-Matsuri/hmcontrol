@@ -33,10 +33,10 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="row"><h4>Rejected</h4></div>
+    <div class="row"><h4>Ready for Approval</h4></div>
     <div class="row">
       <ul class="list-group">
-        <% @rejected.each do |panel| %>
+        <% @ready.each do |panel| %>
           <li class="list-group-item"><%= link_to panel.event_name, convention_event_application_path(@convention, panel) %></li>
         <% end %>
       </ul>

@@ -5,12 +5,12 @@ class EventApplicationsController < ApplicationController
   before_action :check_panel_count
 
   def index
-    @submitted = EventApplication.submitted.where(user_id: current_user.id)
-    @approved = EventApplication.approved.where(user_id: current_user.id)
-    @reviewed = EventApplication.reviewing.where(user_id: current_user.id)
-    @rejected = EventApplication.rejected.where(user_id: current_user.id)
-    @scheduled = EventApplication.scheduled.where(user_id: current_user.id)
-    @waitlist = EventApplication.waitlist.where(user_id: current_user.id)
+    @submitted = EventApplication.submitted.where(user_id: current_user.id, convention_id: @convention.id)
+    @approved = EventApplication.approved.where(user_id: current_user.id, convention_id: @convention.id)
+    @reviewed = EventApplication.reviewing.where(user_id: current_user.id, convention_id: @convention.id)
+    @ready = EventApplication.ready.where(user_id: current_user.id, convention_id: @convention.id)
+    @scheduled = EventApplication.scheduled.where(user_id: current_user.id, convention_id: @convention.id)
+    @waitlist = EventApplication.waitlist.where(user_id: current_user.id, convention_id: @convention.id)
   end
 
   def new

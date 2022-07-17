@@ -22,18 +22,18 @@
 </div>
 <div id="panel_app">
   
-  <div class="row">
+  <div class="row pt-5">
     <h2>General Information</h2>
     <hr>
   </div>
-  <div class="row">
+  <div class="row pb-3">
     <div class="col">
       <%= f.label :event_name, class: 'form-label' %>
       <%= f.text_field :event_name, class: 'form-control' %>
       <div id="nameHelp" class="form-text">Name of panel/event as you would like it to appear in Guide/Mobile App</div>
     </div>
   </div>
-  <div class="row">
+  <div class="row py-3">
     <div class="col">
       <%= f.label :host_stage_name, class: 'form-label' %>
       <%= f.text_field :host_stage_name, class: 'form-control' %>
@@ -51,7 +51,7 @@
       <%= f.check_box :previous_convention, class: 'form-check-input' %>
     </div>
   </div>
-  <div class="row">
+  <div class="row pt-5">
     <h2>About the Panel</h2>
     <hr>
   </div>
@@ -67,18 +67,18 @@
       <div id="externalHelp" class="form-text">Description of the panel/event you would like listed in the Convention Guide and Mobile App</div>
     </div>
   </div>
-  <div class="row">
+  <div class="row pt-5">
     <h2>Time Choices</h2>
     <p>Below please pick the best time each day for your panel.</p>
   </div>
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row py-2">
+    <div class="col-md-12 my-2">
       <%= f.fields_for :time_choice, TimeChoice.new do |t| %>
       <!-- START FRIDAY -->
-      <div class="card">
+      <div class="card my-3">
         <div class="card-body">
           <h4 class="card-title">Friday</h4>
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Friday 8am to 11am</label>
               <%= t.range_field :fri_8_to_11, in: 1..5, list: "fri_8_to_11_list", data: {day: 'friday'}, class: "non-adult" %>
@@ -93,7 +93,7 @@
           </div>
             
           <!-- Friday 11am to 2pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Friday 11am to 2pm</label>
               <%= t.range_field :fri_11_to_14, in: 1..5, list: "fri_11_to_14_list", data: {day: 'friday'}, class: "non-adult" %>
@@ -107,7 +107,7 @@
             </div>
           </div>
           <!-- Friday 2pm to 5pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Friday 2pm to 5pm</label>
               <%= t.range_field :fri_14_to_17, in: 1..5, list: "fri_14_to_17_list", data: {day: 'friday'}, class: "non-adult" %>
@@ -121,7 +121,7 @@
             </div>
           </div>
           <!-- Friday 5pm to 8pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Friday 5pm to 8pm</label>
               <%= t.range_field :fri_17_to_20, in: 1..5, list: "fri_17_to_20_list", data: {day: 'friday'}, class: "non-adult" %>
@@ -135,7 +135,7 @@
             </div>
           </div>
           <!-- Friday 8pm to 11pm -->
-          <div class="card">
+          <div class="card my-1">
             <div class="card-body">
               <label>Friday 8pm to 11pm</label>
               <%= t.range_field :fri_20_to_23, in: 1..5, list: "fri_20_to_23_list", data: {day: 'friday'} %>
@@ -149,7 +149,7 @@
             </div>
           </div>
           <!-- Friday 11pm to 2am -->
-          <div class="card">
+          <div class="card my-1">
             <div class="card-body">
               <label>Friday 11pm to 2am</label>
               <%= t.range_field :fri_23_to_2, in: 1..5, list: "fri_23_to_2_list", data: {day: 'friday'} %>
@@ -166,10 +166,10 @@
       </div>
       <!-- END FRIDAY -->
       <!-- START SATURDAY -->
-      <div class="card">
+      <div class="card my-3">
         <div class="card-body">
           <h4 class="card-title">Saturday</h4>
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Saturday 8am to 11am</label>
               <%= t.range_field :sat_8_to_11, in: 1..5, list: "sat_8_to_11_list", data: {day: 'saturday'}, class: "non-adult" %>
@@ -184,7 +184,7 @@
           </div>
             
           <!-- Saturday 11am to 2pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Saturday 11am to 2pm</label>
               <%= t.range_field :sat_11_to_14, in: 1..5, list: "sat_11_to_14_list", data: {day: 'saturday'}, class: "non-adult" %>
@@ -198,7 +198,7 @@
             </div>
           </div>
           <!-- Saturday 2pm to 5pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Saturday 2pm to 5pm</label>
               <%= t.range_field :sat_14_to_17, in: 1..5, list: "sat_14_to_17_list", data: {day: 'saturday'}, class: "non-adult" %>
@@ -212,7 +212,7 @@
             </div>
           </div>
           <!-- Saturday 5pm to 8pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Saturday 5pm to 8pm</label>
               <%= t.range_field :sat_17_to_20, in: 1..5, list: "sat_17_to_20_list", data: {day: 'saturday'}, class: "non-adult" %>
@@ -226,7 +226,7 @@
             </div>
           </div>
           <!-- Saturday 8pm to 11pm -->
-          <div class="card">
+          <div class="card my-1">
             <div class="card-body">
               <label>Saturday 8pm to 11pm</label>
               <%= t.range_field :sat_20_to_23, in: 1..5, list: "sat_20_to_23_list", data: {day: 'saturday'} %>
@@ -240,7 +240,7 @@
             </div>
           </div>
           <!-- Saturday 11pm to 2am -->
-          <div class="card">
+          <div class="card my-1">
             <div class="card-body">
               <label>Saturday 11pm to 2am</label>
               <%= t.range_field :sat_23_to_2, in: 1..5, list: "sat_23_to_2_list", data: {day: 'saturday'} %>
@@ -257,10 +257,10 @@
       </div>
       <!-- END SATURDAY -->
       <!-- START SUNDAY -->
-      <div class="card non-adult">
+      <div class="card my-3 non-adult">
         <div class="card-body">
           <h4 class="card-title">Sunday</h4>
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Sunday 8am to 11am</label>
               <%= t.range_field :sun_8_to_11, in: 1..5, list: "sun_8_to_11_list", data: {day: 'sunday'}, class: "non-adult" %>
@@ -275,7 +275,7 @@
           </div>
             
           <!-- Sunday 11am to 2pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Sunday 11am to 2pm</label>
               <%= t.range_field :sun_11_to_14, in: 1..5, list: "sun_11_to_14_list", data: {day: 'sunday'}, class: "non-adult" %>
@@ -289,7 +289,7 @@
             </div>
           </div>
           <!-- Sunday 2pm to 5pm -->
-          <div class="card non-adult">
+          <div class="card my-1 non-adult">
             <div class="card-body">
               <label>Sunday 2pm to 5pm</label>
               <%= t.range_field :sun_14_to_17, in: 1..5, list: "sun_14_to_17_list", data: {day: 'sunday'}, class: "non-adult" %>
